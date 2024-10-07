@@ -49,6 +49,18 @@
 </div>
 <br>
 
+<h2 align = "center">👨‍💻 Languages</h2>
+
+`Coming soon...`
+
+<h2 align = "center">🌐 Web Development</h2>
+
+
+`Coming soon...`
+
+<h2 align = "center">🤖 Machine Learning and Data Science</h2>
+
+
 `Coming soon...`
 
 <br>
