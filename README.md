@@ -51,17 +51,43 @@
 
 <h2 align = "center">👨‍💻 Languages</h2>
 
-`Coming soon...`
-
-<h2 align = "center">🌐 Web Development</h2>
-
+<div align = "center">
 
 `Coming soon...`
+
+</div>
+
+<h2 align = "center">💻 Tools and Platforms</h2>
+
+<div align = "center">
+
+`Coming soon...`
+
+</div>
 
 <h2 align = "center">🤖 Machine Learning and Data Science</h2>
 
+<div align = "center">
 
 `Coming soon...`
+
+</div>
+
+<h2 align = "center">⚙️ Hardware Development</h2>
+
+<div align = "center">
+
+`Coming soon...`
+
+<!-- <table>
+  <tr>
+    <td>
+      <a href="https://www.raspberrypi.com/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Hardware/Right/raspberryPi.svg" alt="RASPBERRY PI"></a>
+      <br>
+    </td>
+  </tr>
+</table> -->
+</div>
 
 <br>
 <div style="width: 100%;">
