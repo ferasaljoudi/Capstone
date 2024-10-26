@@ -54,6 +54,9 @@
 
 # Introduction
 
+<details>
+  <summary></summary>
+
 ## Document Purpose
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The purpose of this document is to outline the requirements for the development of a IFS DriverAlert system that alerts drivers when it detects eye closure, aiming to reduce accidents caused by drowsy driving. This document will serve as a reference for the project team throughout the design, development, and testing phases, providing a clear understanding of the system’s objectives, features, and constraints.
@@ -78,3 +81,12 @@ This document is intended for the following audience:
 - <b>Project Team:</b> The course instructor overseeing the project as part of the university curriculum. This document will provide the professor with a clear understanding of the project scope, objectives, and requirements.
 - <b>Mentor:</b> The mentor assigned to regularly review project progress and offer support as needed. This document will help the mentor understand the project’s direction, monitor adherence to requirements, and provide informed guidance.
 
+## References
+
+`Coming...`
+
+</details>
+
+# Overall Description
+
+`Coming...`
