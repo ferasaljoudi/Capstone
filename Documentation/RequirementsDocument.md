@@ -78,3 +78,10 @@ This document is intended for the following audience:
 - <b>Project Team:</b> The course instructor overseeing the project as part of the university curriculum. This document will provide the professor with a clear understanding of the project scope, objectives, and requirements.
 - <b>Mentor:</b> The mentor assigned to regularly review project progress and offer support as needed. This document will help the mentor understand the project’s direction, monitor adherence to requirements, and provide informed guidance.
 
+## References
+
+`In progress...`
+
+# Overall Description
+
+`In progress...`
