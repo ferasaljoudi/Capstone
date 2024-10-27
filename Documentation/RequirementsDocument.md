@@ -90,3 +90,51 @@ This document is intended for the following audience:
 # Overall Description
 
 `In progress...`
+
+# System Features
+
+`In progress...`
+
+# Data Requirements
+
+## Model Data
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We are utilizing the _<a href="https://www.kaggle.com/datasets/prasadvpatil/mrl-dataset" target="_blank" title="MRL Eye Dataset">MRL Eye Dataset</a>_ which provides images of open and closed eyes. The decision to focus exclusively on the eye region is based on the following reasons:
+
+- <b>Simpler and Faster:</b> Focusing on the eyes reduces the amount of data the model needs to process, enabling quicker and more efficient detection, especially on lower-power devices like the Raspberry Pi.
+- <b>Targeted Detection:</b> Since drowsiness is primarily indicated by eye closure, using an eye-only dataset provides a focused approach that aligns well with the project's objective.
+- <b>Less Data Required:</b> Training on eye images requires less labeled samples, which can reduce both the time and resources needed for model training.
+
+## Data Dictionary
+
+`In progress...`
+
+## Data Integrity
+
+### Training Data
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The MRL Eye Dataset is licensed under a public domain dedication, allowing free usage, modification, distribution, and performance without permission. This permissive license ensures that our usage of the dataset adheres to legal and ethical standards, supporting the integrity of our project.
+
+### Captured Data
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For the operational system, all captured images are processed in real-time for drowsiness detection. No images are stored or saved, ensuring user privacy and minimizing data retention concerns. This approach maintains data integrity by processing only the necessary visual data and disposing of it immediately after use.
+
+# Interface Requirements
+
+`In progress...`
+
+# Quality Attributes
+
+`In progress...`
+
+# Non-Functional Requirements
+
+`In progress...`
+
+# Glossary
+
+`In progress...`
+
+# Analysis Models
+
+`In progress...`
