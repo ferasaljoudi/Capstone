@@ -54,9 +54,6 @@
 
 # Introduction
 
-<details>
-  <summary></summary>
-
 ## Document Purpose
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The purpose of this document is to outline the requirements for the development of a IFS DriverAlert system that alerts drivers when it detects eye closure, aiming to reduce accidents caused by drowsy driving. This document will serve as a reference for the project team throughout the design, development, and testing phases, providing a clear understanding of the system’s objectives, features, and constraints.
@@ -83,10 +80,8 @@ This document is intended for the following audience:
 
 ## References
 
-`Coming...`
-
-</details>
+`In progress...`
 
 # Overall Description
 
-`Coming...`
+`In progress...`
