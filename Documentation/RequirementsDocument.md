@@ -113,6 +113,24 @@ This document is intended for the following audience:
 
 # System Features
 
+## Real-Time Eye Closure Detection
+
+### Description
+
+`In progress...`
+
+### Functional Requirements
+
+`In progress...`
+
+## Alert System
+
+### Description
+
+`In progress...`
+
+### Functional Requirements
+
 `In progress...`
 
 # Data Requirements
