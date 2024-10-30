@@ -161,6 +161,18 @@ This document is intended for the following audience:
 
 `In progress...`
 
+## User Interfaces
+
+`In progress...`
+
+## Hardware Interfaces
+
+`In progress...`
+
+## Software Interfaces
+
+`In progress...`
+
 # Quality Attributes
 
 `In progress...`
