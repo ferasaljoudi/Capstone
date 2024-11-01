@@ -145,7 +145,25 @@ This document is intended for the following audience:
 
 ## Data Dictionary
 
-`In progress...`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The data used for training and validating our drowsiness detection model consists of images categorized into two classes: `Closed Eyes` and `Open Eyes`. Each class represents a specific state of the driver's eyes, which the model will analyze in real-time to detect drowsiness.
+
+The images below show the number of images available in each class:
+
+<div align="center">
+
+![Classes Numbers](./Assets/ClassesNumbers.png)
+
+</div>
+
+The figure below provides a sample of images from each class:
+
+<div align="center">
+
+![Sample Images](./Assets/SampleImages.png)
+
+</div>
+
+The image above shows the variations within each class, highlighting different eye positions, which help improve the model's robustness.
 
 ## Data Integrity
 
