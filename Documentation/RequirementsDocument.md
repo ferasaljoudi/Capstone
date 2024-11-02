@@ -131,11 +131,13 @@ This document is intended for the following audience:
 
 ### Description
 
-`In progress...`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The alert system is designed to notify the driver whenever drowsiness is detected. When the model identifies a prolonged period of closed eyes, it triggers an audible alert through a buzzer or speaker. The alert aims to immediately capture the driver's attention and prevent potential accidents caused by drowsy driving. The system will continue to monitor and issue alerts if drowsiness continued.
 
 ### Functional Requirements
 
-`In progress...`
+- The system must sound a buzzer or play a pre-recorded alert through a speaker when closed eyes are detected for a specified duration.
+- The alert should be loud enough to ensure the driver hears it.
+- The alert system should reset once the driver opens their eyes and remains alert, allowing it to monitor for future drowsiness episodes.
 
 # Data Requirements
 
