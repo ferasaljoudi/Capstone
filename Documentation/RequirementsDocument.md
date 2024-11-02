@@ -117,11 +117,15 @@ This document is intended for the following audience:
 
 ### Description
 
-`In progress...`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The real-time eye closure detection feature is the core component of the IFS DriverAlert. It uses a camera connected to a Raspberry Pi 5 to continuously monitor the driver's eyes. A Convolutional Neural Network (CNN) model, trained on images of open and closed eyes, will process the live video feed to detect when the driver's eyes are closed.
 
 ### Functional Requirements
 
-`In progress...`
+- The system must be able to capture and process live video frames from the camera in real-time.
+- The model should classify each frame as either "open eyes" or "closed eyes" with minimum latency.
+- The detection model should be optimized to run on the Raspberry Pi, ensuring efficient use of CPU/GPU resources.
+- The system should be accurate enough to reliably detect closed eyes and avoid false positives (e.g., blinking) as much as possible.
+- The detection must work offline, without requiring an internet connection, for continuous functionality.
 
 ## Alert System
 
