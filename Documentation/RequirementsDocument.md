@@ -203,6 +203,8 @@ The image above shows the variations within each class, highlighting different e
 
 # Non-Functional Requirements
 
+## Scalability
+
 `In progress...`
 
 # Glossary
