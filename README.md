@@ -53,7 +53,14 @@
 
 <div align = "center">
 
-`Coming soon...`
+<table>
+  <tr>
+    <td>
+      <a href="https://www.w3schools.com/python/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Middle/python.svg" alt="Python"></a>
+      <br>
+    </td>
+  </tr>
+</table>
 
 </div>
 
