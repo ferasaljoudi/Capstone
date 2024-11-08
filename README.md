@@ -76,7 +76,25 @@
 
 <div align = "center">
 
-`Coming soon...`
+<table>
+  <tr>
+    <td>
+      <a href="https://pandas.pydata.org/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/MachineLearning/Left/pandas.svg" alt="Pandas"></a>
+      <br>
+      <a href="https://www.tensorflow.org/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/MachineLearning/Left/tensorflow.svg" alt="Tensorflow"></a>
+    </td>
+    <td>
+      <a href="https://numpy.org/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/MachineLearning/Middle/numpy.svg" alt="Numpy"></a>
+      <br>
+      <a href="https://keras.io/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/MachineLearning/Middle/keras.svg" alt="Keras"></a>
+    </td>
+    <td>
+      <a href="https://matplotlib.org/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/MachineLearning/Right/matplotlib.svg" alt="Matplotlib"></a>
+      <br>
+      <a href="https://opencv.org/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/WebDevelopment/Right/openCV.svg" alt="OpenCV">
+    </td>
+  </tr>
+</table>
 
 </div>
 
