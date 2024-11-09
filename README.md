@@ -102,16 +102,15 @@
 
 <div align = "center">
 
-`Coming soon...`
-
-<!-- <table>
+<table>
   <tr>
     <td>
       <a href="https://www.raspberrypi.com/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Hardware/Right/raspberryPi.svg" alt="RASPBERRY PI"></a>
       <br>
     </td>
   </tr>
-</table> -->
+</table>
+
 </div>
 
 <br>
