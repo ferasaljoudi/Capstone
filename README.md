@@ -67,7 +67,6 @@
 <h2 align = "center">💻 Tools and Platforms</h2>
 
 <div align = "center">
-
 <table>
   <tr>
     <td>
@@ -80,13 +79,11 @@
     </td>
   </tr>
 </table>
-
 </div>
 
 <h2 align = "center">🤖 Machine Learning and Data Science</h2>
 
 <div align = "center">
-
 <table>
   <tr>
     <td>
@@ -106,13 +103,11 @@
     </td>
   </tr>
 </table>
-
 </div>
 
 <h2 align = "center">⚙️ Hardware Development</h2>
 
 <div align = "center">
-
 <table>
   <tr>
     <td>
@@ -121,7 +116,6 @@
     </td>
   </tr>
 </table>
-
 </div>
 
 <br>
