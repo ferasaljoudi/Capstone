@@ -67,15 +67,23 @@
 <h2 align = "center">💻 Tools and Platforms</h2>
 
 <div align = "center">
-
-`Coming soon...`
-
+<table>
+  <tr>
+    <td>
+      <a href="https://www.jetbrains.com/pycharm/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Left/pyCharm.svg" alt="PyCharm"></a>
+      <br>
+    </td>
+    <td>
+      <a href="https://colab.google/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Right/colab.svg" alt="Google Colab"></a>
+      <br>
+    </td>
+  </tr>
+</table>
 </div>
 
 <h2 align = "center">🤖 Machine Learning and Data Science</h2>
 
 <div align = "center">
-
 <table>
   <tr>
     <td>
@@ -95,13 +103,11 @@
     </td>
   </tr>
 </table>
-
 </div>
 
 <h2 align = "center">⚙️ Hardware Development</h2>
 
 <div align = "center">
-
 <table>
   <tr>
     <td>
@@ -110,7 +116,6 @@
     </td>
   </tr>
 </table>
-
 </div>
 
 <br>
