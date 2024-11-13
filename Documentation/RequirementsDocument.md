@@ -101,15 +101,26 @@ This document is intended for the following audience:
 
 ## Operating Environment
 
-`In progress...`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The IFS DriverAlert system is designed to be easily installed and used within any standard vehicle. It consists of a small, compact box that houses the Raspberry Pi 5 and a 12V to 5V power converter, connected to a camera and a speaker. This box can be placed in various positions in the car to suit the driver's preference, with the camera positioned to face the driver's face for effective monitoring. The system connects to the car's 12V power supply through a USB adapter, and the power converter reduces the voltage to 5V to run the Raspberry Pi. This setup enables the system to operate in diverse lighting conditions, including daylight, low-light, and nighttime environments, and it must be resilient to minor vibrations from vehicle movement.
+
 
 ## Design and Implementation Constraints
 
-`In progress...`
+- <b>Computational Constraints:</b> The Raspberry Pi 5 has limited computational resources, necessitating an optimized model and code to ensure real-time performance without latency issues.
+- <b>Lighting Variability:</b> Since lighting conditions inside a vehicle can vary significantly, the system must be robust to handle different lighting scenarios.
+- <b>Privacy and Data Security:</b> To address privacy concerns, the system processes data in real-time without storing any captured images or video frames. This ensures that sensitive data is neither saved nor transmitted, aligning with privacy standards.
 
 ## Assumptions and Dependencies
 
-`In progress...`
+- <b>Assumptions:</b>
+    - The system will be positioned optimally in the vehicle to have a clear and unobstructed view of the driver’s eyes.
+    - Drivers will use the system in a well-maintained vehicle environment, minimizing unexpected vibrations or obstructions.
+    - The model will achieve an acceptable accuracy level in differentiating between open and closed eyes to provide reliable drowsiness detection.
+
+- <b>Dependencies:</b>
+    - The system relies on OpenCV for image processing and TensorFlow/Keras for machine learning model implementation. Compatibility with the Raspberry Pi 5 is essential for smooth operation.
+    - The eye detection model is trained on a dataset from Kaggle, providing labeled images of open and closed eyes for model accuracy.
+    - The system depends on a stable power supply within the vehicle through USB adapter.
 
 # System Features
 
