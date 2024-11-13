@@ -89,15 +89,15 @@ This document is intended for the following audience:
 
 # Overall Description
 
-`In progress...`
-
 ## Product Perspective
 
-`In progress...`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The IFS DriverAlert system is designed as a standalone, accessible solution for detecting driver drowsiness through real-time eye closure monitoring. This system is intended for any standard vehicle and operates independently from any vehicle's integrated systems, which differentiate it from high-end drowsiness detection solutions in premium vehicles. By leveraging affordable hardware (RPi 5), along with open-source software and datasets, the system aims to make this safety technology accessible for all drivers, regardless of the vehicle model they own.
 
 ## User Classes and Characteristics
 
-`In progress...`
+- <b>Everyday Drivers:</b> Individuals who prioritize safety and seek an affordable solution to reduce the risk of drowsy driving incidents. They may have limited technical knowledge and expect an easy-to-use system that integrates seamlessly into their vehicle.
+- <b>Business Managers:</b> Businesses managing vehicles, such as trucking companies, looking to implement safety measures for their drivers.
+- <b>University Stakeholders (Professor and Mentor):</b> Individuals, who are overseeing the project’s progress and development within an academic context, require a clear understanding of the system's design, purpose, and overall impact on road safety.
 
 ## Operating Environment
 
