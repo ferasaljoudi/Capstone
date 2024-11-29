@@ -38,3 +38,9 @@ sudo alsactl store
 # Testing the speaker again
 speaker-test -D hw:0,0 -t sine -f 440 -c 2 -l 1
 
+# Testing the camera (Pi Camera Module 3):
+# Connect the camera to the “Camera Serial Interface” on the RPi
+sudo shutdown -r now # Reboot the RPi
+
+libcamera-hello --qt-preview # Test the camera
+
