@@ -251,12 +251,24 @@ The image above shows the variations within each class, highlighting different e
 
 ## Scalability
 
+- The system will be adapted to additional features such as integrating yawning detection or a visual user interface without significant hardware upgrades.
+- The CNN model can be retrained on new datasets to enhance accuracy or include additional detection capabilities.
+
 ## Compatibility
+
+- The system is compatible with standard 12V vehicle power systems and supports both CSI and USB camera connections.
+- It runs on Raspberry Pi OS and is compatible with open-source libraries like OpenCV and TensorFlow Lite.
 
 # Glossary
 
-`In progress...`
+- <b>CNN (Convolutional Neural Network):</b> A type of deep learning model used for image classification tasks.
+- <b>GPIO (General Purpose Input/Output):</b> Pins on the Raspberry Pi used for hardware interaction, such as connecting a switch, button, etc.
+- <b>OpenCV:</b> An open-source computer vision library used for image processing.
+- <b>MediaPipe:</b> A cross-platform framework used for building multimodal machine learning pipelines. In this project we are using it to capture the eye region so we can extract it and predict it against our model.
+- <b>Raspberry Pi 5:</b> A compact computer used as the main hardware for this system.
+- <b>Step-Down Converter:</b> A device that converts 12V to 5V for powering the Raspberry Pi.
 
 # Analysis Models
 
-`In progress...`
+- [Block Diagram](IFS_BlockDiagram.pdf)
+
