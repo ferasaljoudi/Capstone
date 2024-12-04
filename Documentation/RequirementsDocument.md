@@ -190,23 +190,39 @@ The image above shows the variations within each class, highlighting different e
 
 ### Captured Data
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For the operational system, all captured images are processed in real-time for drowsiness detection. No images are stored or saved, ensuring user privacy and minimizing data retention concerns. This approach maintains data integrity by processing only the necessary visual data and disposing of it immediately after use.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For the operational system, all captured images are processed in real-time for drowsiness detection. No images are stored or saved, ensuring driver privacy and minimizing data retention concerns. This approach maintains data integrity by processing only the necessary visual data and disposing of it immediately after use.
 
 # Interface Requirements
 
-`In progress...`
-
 ## User Interfaces
 
-`In progress...`
+- <b>Power Connection:</b> The driver connects the step-down converter to the car's 12V power system via a USB port. The converter provides 5V power to the Raspberry Pi through a USB-C connection.
+- <b>Switch/button:</b> The driver interacts with the system through a physical switch connected to the GPIO, enabling or disabling the program.
+- <b>Speaker Alerts:</b> Alerts are provided through the speaker to notify the driver of detected drowsiness.
+- <b>Camera Positioning:</b> The camera is positioned to face the driver and requires no further user interaction once set up.
 
 ## Hardware Interfaces
 
-`In progress...`
+- <b>Power Source:</b>
+    - <b>Input:</b> 12V DC from the car power system via a USB port.
+    - <b>Output:</b> 5V DC provided to the Raspberry Pi through a step-down converter with a USB-C interface.
+- <b>Camera:</b>
+    - <b>Option 1:</b> Raspberry Pi Camera Module 3 connected via CSI (Camera Serial Interface).
+    - <b>Option 2:</b> USB-connected HD Webcam 1080P.
+- <b>Speaker:</b> Mini External USB Stereo Speaker connected directly to the Raspberry Pi via USB.
+- <b>Switch/button:</b> Physical GPIO-connected switch or button for enabling/disabling the system.
 
 ## Software Interfaces
 
-`In progress...`
+- <b>Operating System:</b> Raspberry Pi OS.
+- <b>Programming Environment:</b> Python-based scripts for image processing and training the model.
+- <b>Libraries and Frameworks:</b>
+    - <b>OpenCV:</b> For capturing and processing the driver's face.
+    - <b>MediaPipe:</b> For eye region detection.
+    - <b>TensorFlow/Keras:</b> For running and training the CNN model to classify eye states.
+    - <b>Additional libraries:</b> time, cv2, numpy, etc.
+- <b>Script Execution:</b> The program runs automatically when the driver switches the system on, requiring no further work.
+- <b>Model Training:</b> The model is trained in Google Colab, converted to TensorFlow Lite and transferred to the Raspberry Pi.
 
 # Quality Attributes
 
