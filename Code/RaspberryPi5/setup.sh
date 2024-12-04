@@ -1,46 +1,64 @@
 #!/bin/bash
 # Raspberry Pi setup
 
-# Get update dependencies
-sudo apt-get update
+# Connect to the Raspberry Pi via SSH
+ssh safedrive@ifs.local
 
-# Upgrading packages
-sudo apt-get upgrade -y
+# Update the package lists
+sudo apt update
 
-# Performing distro upgrade
-sudo apt-get dist-upgrade
+# Perform a full system upgrade
+sudo apt full-upgrade -y
 
-# Updating firmware
-sudo rpi-update
-
-# Removing old packages
+# Remove unnecessary packages
 sudo apt autoremove -y
 
-# Clearing cache
-sudo apt autoclean
+# Clean the local repository from retrieved package files
+sudo apt clean
 
 # Rebooting the system
 sudo reboot
 
 # Testing the speaker
-speaker-test -D hw:0,0 -t sine -f 440 -c 2 -l 1
+speaker-test -D hw:2,0 -t sine -f 440 -c 2 -l 1
 
 # Increasing the volume
 alsamixer
 
 # Press F6 to select a sound card.
 # Use the arrow keys to navigate to your USB speaker and press Enter.
-# Use the Up Arrow key to increase the volume.
+# Use the Up Arrow key to increase the volume. (We set it to 60/100)
 
 # Save the setting
 sudo alsactl store
 
 # Testing the speaker again
-speaker-test -D hw:0,0 -t sine -f 440 -c 2 -l 1
+speaker-test -D hw:2,0 -t sine -f 440 -c 2 -l 1
 
-# Testing the camera (Pi Camera Module 3):
-# Connect the camera to the “Camera Serial Interface” on the RPi
-sudo shutdown -r now # Reboot the RPi
+# Testing the camera:
+# Connect the camera to the RPi and reboot
+sudo shutdown -r now
 
-libcamera-hello --qt-preview # Test the camera
+libcamera-hello # Test the camera
 
+# Install OpenCV for Python
+sudo apt install python3-opencv -y
+
+# Create a Python virtual environment
+python3 -m venv capstone
+# Activate the environment
+source capstone/bin/activate
+
+# Install dependencies
+pip install opencv-python
+pip install mediapipe
+Pip install cvzone
+pip install opencv-python tensorflow
+
+# Create a directory and navigate to it
+mkdir capstone/eye_detection
+cd capstone/eye_detection
+
+# Create python script and run it
+nano eye_detection_rpi.py
+python eye_detection_rpi.py
