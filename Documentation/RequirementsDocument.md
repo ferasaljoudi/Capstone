@@ -226,13 +226,32 @@ The image above shows the variations within each class, highlighting different e
 
 # Quality Attributes
 
-`In progress...`
+## Usability
+
+- The system should be user-friendly and requires minimal interaction from the driver. The driver will only be connecting the step-down converter to the car's power source and toggling the GPIO-connected switch to enable or disable the system.
+- The audible alerts must be implemented to ensure accessibility without needing visual attention.
+
+## Performance
+
+- The system should operates in real-time with minimal latency to ensure immediate detection of drowsiness and timely alerts.
+- The CNN model and optimized code need to run smoothly on the Raspberry Pi 5 considering its limited computational resources.
+
+## Safety
+
+- The system enhances driver safety by detecting drowsiness and sounding alerts to prevent potential accidents.
+- Audible alerts are chosen over visuals to prevent drivers from looking away from the road.
+- Data privacy is ensured as no images or videos are stored or transmitted, protecting user information.
+
+## Reliability
+
+- The system should be designed to function offline, to ensure it operates in environments with no internet connectivity.
+- Hardware must be connected stably to ensure consistent performance in diverse vehicle movement conditions and the camera must work with diverse lighting.
 
 # Non-Functional Requirements
 
 ## Scalability
 
-`In progress...`
+## Compatibility
 
 # Glossary
 
