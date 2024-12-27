@@ -54,6 +54,9 @@ pip install opencv-python
 pip install mediapipe
 Pip install cvzone
 pip install opencv-python tensorflow
+# Audio dependencies
+pip install gTTS
+sudo apt install mpg321
 
 # Create a directory and navigate to it
 mkdir capstone/eye_detection
