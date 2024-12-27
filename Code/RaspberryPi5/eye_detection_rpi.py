@@ -1,3 +1,4 @@
+import os
 import time
 
 import cv2
@@ -52,9 +53,19 @@ if not cap.isOpened():
 
 print("Press 'q' to quit.")
 
+# Audio file paths
+file1 = "focus_on_the_road.mp3"
+file2 = "consider_taking_a_rest.mp3"
+file3 = "detection_system_on.mp3"
+file4 = "detection_system_off.mp3"
+
 # Default variables
 closed_start_time = None
 sleepy_detected = False
+alert = False
+
+# Play system is on
+os.system(f"mpg321 {file3}")
 
 while True:
     success, frame = cap.read()
@@ -127,11 +138,13 @@ while True:
         # If status stayed "Closed" for 2 seconds, sleepy is detected
         elif time.time() - closed_start_time >= 2 and not sleepy_detected:
             sleepy_detected = True
+            alert = True
 
     # If status is not, reset "closed_start_time" & "sleepy_detected"
     else:
         closed_start_time = None
         sleepy_detected = False
+        alert = False
 
     # Display the status on the top left corner
     color = (0, 0, 255) if eye_status == "Closed" else (0, 255, 0)
@@ -143,13 +156,20 @@ while True:
         # Display "Sleepy detected" (start at 30 from left and 100 from top)
         # With 1 as font scale and 2 as thickness
         cv2.putText(frame, "Sleepy detected", (30, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-        
+        # Play the alert
+        os.system(f"mpg321 {file1}")
+        # Reset "closed_start_time" & "sleepy_detected" & "alert"
+        closed_start_time = None
+        sleepy_detected = False
+        alert = False
 
     # Show the video feed
     cv2.imshow("Live Eye Detection", frame)
 
     # Break if 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
+        # Play system is off
+        os.system(f"mpg321 {file4}")
         break
 
 # Release the video capture and close the window
