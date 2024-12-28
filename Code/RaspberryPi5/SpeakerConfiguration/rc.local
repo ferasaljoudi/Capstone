@@ -1,0 +1,5 @@
+#!/bin/bash
+# Restore ALSA settings
+sudo alsactl restore
+
+exit 0
