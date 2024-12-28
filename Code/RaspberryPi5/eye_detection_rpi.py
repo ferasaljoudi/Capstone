@@ -22,6 +22,17 @@ interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
+# Landmarks for the lips
+upper_lip_top = 13
+lower_lip_bottom = 14
+lip_left = 61
+lip_right = 291
+
+# Lists to store mouth ratio
+list_of_lips_ratios = []
+
+green_color = (0, 255, 0)
+
 # Function to preprocess the eye before predicting it with the model
 # This function will resize the image, convert it to RGB and normalize pixel values
 # These steps are required to match the model input we have
@@ -61,8 +72,11 @@ file4 = "detection_system_off.mp3"
 
 # Default variables
 closed_start_time = None
+yawn_start_time = None
 sleepy_detected = False
+yawn_detected = False
 alert = False
+yawn_alert = False
 
 # Play system is on
 os.system(f"mpg321 {file3}")
@@ -130,17 +144,63 @@ while True:
                 # The status will be "Closed" if both eyes are closed
                 if left_eye_pred == 0 and right_eye_pred == 0:
                     eye_status = "Closed"
+            
+            # Get frame dimensions for scaling landmarks
+            h, w, _ = frame.shape
+            
+            # Process lips
+            upper_lip = face_landmarks.landmark[upper_lip_top]
+            lower_lip = face_landmarks.landmark[lower_lip_bottom]
+            left_lip = face_landmarks.landmark[lip_left]
+            right_lip = face_landmarks.landmark[lip_right]
+
+            # Convert lip landmarks to pixel coordinates
+            upper_lip_point = (int(upper_lip.x * w), int(upper_lip.y * h))
+            lower_lip_point = (int(lower_lip.x * w), int(lower_lip.y * h))
+            left_lip_point = (int(left_lip.x * w), int(left_lip.y * h))
+            right_lip_point = (int(right_lip.x * w), int(right_lip.y * h))
+
+            # Draw points on the lips
+            cv2.circle(frame, upper_lip_point, 2, green_color, cv2.FILLED)
+            cv2.circle(frame, lower_lip_point, 2, green_color, cv2.FILLED)
+            cv2.circle(frame, left_lip_point, 2, green_color, cv2.FILLED)
+            cv2.circle(frame, right_lip_point, 2, green_color, cv2.FILLED)
+
+            # Calculate the mouth aspect ratio
+            lip_vertical = np.linalg.norm(np.array(upper_lip_point) - np.array(lower_lip_point))
+            lip_horizontal = np.linalg.norm(np.array(left_lip_point) - np.array(right_lip_point))
+            lip_ratio = (lip_vertical / lip_horizontal) * 100
+            list_of_lips_ratios.append(lip_ratio)
+            if len(list_of_lips_ratios) > 3:
+                list_of_lips_ratios.pop(0)
+            # Average mouth aspect ratio
+            average_ratio_lips = sum(list_of_lips_ratios) / len(list_of_lips_ratios)
+
+            # Check the lip average stayed over 30 for 2 seconds
+            if average_ratio_lips > 30:
+                if yawn_start_time is None:
+                    # Initialize the timer to track for how long the mouth is open
+                    yawn_start_time = time.time()
+                # If mouth stayed open for 2 seconds, yawn is detected
+                elif time.time() - yawn_start_time >= 2 and not yawn_detected:
+                    yawn_detected = True
+                    yawn_alert = True
+            # If average went below the 30, reset "yawn_start_time" & "yawn_detected" & "yawn_alert"
+            else:
+                yawn_start_time = None
+                yawn_detected = False
+                yawn_alert = False
 
     if eye_status == "Closed":
         if closed_start_time is None:
             # Initialize the timer to track for how long the status will stay "Closed"
             closed_start_time = time.time()
-        # If status stayed "Closed" for 2 seconds, sleepy is detected
-        elif time.time() - closed_start_time >= 2 and not sleepy_detected:
+        # If status stayed "Closed" for 1 seconds, sleepy is detected
+        elif time.time() - closed_start_time >= 1 and not sleepy_detected:
             sleepy_detected = True
             alert = True
 
-    # If status is not, reset "closed_start_time" & "sleepy_detected"
+    # If status is not, reset "closed_start_time" & "sleepy_detected" & "alert"
     else:
         closed_start_time = None
         sleepy_detected = False
@@ -162,6 +222,17 @@ while True:
         closed_start_time = None
         sleepy_detected = False
         alert = False
+    
+    if yawn_detected and yawn_alert:
+        # Display "Yawn detected" (start at 30 from left and 150 from top)
+        # With 1 as font scale and 2 as thickness
+        cv2.putText(frame, "Yawn detected", (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        # Play the yawn_alert
+        os.system(f"mpg321 {file2}")
+        # Reset "yawn_start_time" & "yawn_detected" & "yawn_alert"
+        yawn_start_time = None
+        yawn_detected = False
+        yawn_alert = False
 
     # Show the video feed
     cv2.imshow("Live Eye Detection", frame)
