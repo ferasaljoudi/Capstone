@@ -214,7 +214,7 @@ while True:
     # With 1 as font scale and 2 as thickness
     cv2.putText(frame, eye_status, (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
 
-    if sleepy_detected:
+    if sleepy_detected and closed_alert:
         # Display "Sleepy detected" (start at 30 from left and 100 from top)
         # With 1 as font scale and 2 as thickness
         cv2.putText(frame, "Sleepy detected", (30, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
