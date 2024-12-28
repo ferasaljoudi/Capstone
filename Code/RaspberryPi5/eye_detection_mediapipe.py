@@ -30,6 +30,7 @@ blink_counter = 0
 counter = 0
 
 green_color = (0, 255, 0)
+red_color = (0, 0, 255)
 
 # Creating a double ended queue for plotting in real-time
 plot_data = deque(maxlen=100)
@@ -119,7 +120,7 @@ while True:
                 # Only the most recent 3 values are kept
                 if len(list_of_left_eye_ratios) > 3:
                     list_of_left_eye_ratios.pop(0)
-                # Average aspect ratio
+                # Average aspect ratio for the most recent 3 values
                 ratio_average_left = sum(list_of_left_eye_ratios) / len(list_of_left_eye_ratios)
             else:
                 # Default high value if landmarks are missing
@@ -145,7 +146,7 @@ while True:
                 # Only the most recent 3 values are kept
                 if len(list_of_right_eye_ratios) > 3:
                     list_of_right_eye_ratios.pop(0)
-                # Average aspect ratio
+                # Average aspect ratio for the most recent 3 values
                 ratio_average_right = sum(list_of_right_eye_ratios) / len(list_of_right_eye_ratios)
             else:
                 # Default high value if landmarks are missing
@@ -154,8 +155,8 @@ while True:
             # Calculate average eye ratio for both eyes
             average_ratio_eyes = (ratio_average_left + ratio_average_right) / 2
 
-            # Check blink condition and increment the blink counter if average below 26
-            if average_ratio_eyes < 26 and counter == 0:
+            # Check blink condition and increment the blink counter if average 26 or less
+            if average_ratio_eyes <= 26 and counter == 0:
                 blink_counter += 1
                 counter = 1
             if counter != 0:
@@ -164,8 +165,8 @@ while True:
                 if counter > 10:
                     counter = 0
 
-            # Check the eye closed based on if the average stayed under 26 for 1 seconds
-            if average_ratio_eyes < 26:
+            # Check the eye closed based on if the average stayed 26 or less for 1 seconds
+            if average_ratio_eyes <= 26:
                 if closed_start_time is None:
                     # Initialize the timer to track for how long the status will stay "Closed"
                     closed_start_time = time.time()
@@ -173,7 +174,7 @@ while True:
                 elif time.time() - closed_start_time >= 1 and not sleepy_detected:
                     sleepy_detected = True
                     closed_alert = True
-            # If average went above the 26, reset "closed_start_time" & "sleepy_detected" & "closed_alert"
+            # If average went above the 26, reset variables
             else:
                 closed_start_time = None
                 sleepy_detected = False
@@ -187,10 +188,10 @@ while True:
             if sleepy_detected and closed_alert:
                 # Display "Sleepy detected" (start at 30 from left and 100 from top)
                 # With 1 as font scale and 2 as thickness
-                cv2.putText(frame, "Sleepy detected", (30, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                cv2.putText(frame, "Sleepy detected", (30, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
                 # Play the closed_alert
                 os.system(f"mpg321 {file1}")
-                # Reset "closed_start_time" & "sleepy_detected" & "closed_alert"
+                # Reset variables
                 closed_start_time = None
                 sleepy_detected = False
                 closed_alert = False
@@ -223,8 +224,8 @@ while True:
             # Average mouth aspect ratio
             average_ratio_lips = sum(list_of_lips_ratios) / len(list_of_lips_ratios)
 
-            # Check the lip average stayed over 30 for 2 seconds
-            if average_ratio_lips > 30:
+            # Check the lip average stayed 30 or more for 2 seconds
+            if average_ratio_lips >= 30:
                 if yawn_start_time is None:
                     # Initialize the timer to track for how long the mouth is open
                     yawn_start_time = time.time()
@@ -232,7 +233,7 @@ while True:
                 elif time.time() - yawn_start_time >= 2 and not yawn_detected:
                     yawn_detected = True
                     yawn_alert = True
-            # If average went below the 30, reset "yawn_start_time" & "yawn_detected" & "yawn_alert"
+            # If average went below the 30, reset variables
             else:
                 yawn_start_time = None
                 yawn_detected = False
@@ -241,10 +242,10 @@ while True:
             if yawn_detected and yawn_alert:
                 # Display "Yawn detected" (start at 30 from left and 150 from top)
                 # With 1 as font scale and 2 as thickness
-                cv2.putText(frame, "Yawn detected", (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                cv2.putText(frame, "Yawn detected", (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
                 # Play the yawn_alert
                 os.system(f"mpg321 {file2}")
-                # Reset "yawn_start_time" & "yawn_detected" & "yawn_alert"
+                # Reset variables
                 yawn_start_time = None
                 yawn_detected = False
                 yawn_alert = False

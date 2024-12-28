@@ -32,6 +32,7 @@ lip_right = 291
 list_of_lips_ratios = []
 
 green_color = (0, 255, 0)
+red_color = (0, 0, 255)
 
 # Function to preprocess the eye before predicting it with the model
 # This function will resize the image, convert it to RGB and normalize pixel values
@@ -75,7 +76,7 @@ closed_start_time = None
 yawn_start_time = None
 sleepy_detected = False
 yawn_detected = False
-alert = False
+closed_alert = False
 yawn_alert = False
 
 # Play system is on
@@ -106,7 +107,7 @@ while True:
             # Get the eye region through the get_box function
             x_min, y_min, x_max, y_max = get_box(face_landmarks.landmark, left_eye_ids, frame_width, frame_height)
             # Draw the rectangle around the left eye with green color and 2px thickness
-            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)
+            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), green_color, 2)
             # Extract the rectangle region as a new cropped image
             left_eye_crop = frame[y_min:y_max, x_min:x_max]
 
@@ -115,7 +116,7 @@ while True:
             # Get the eye region through the get_box function
             x_min, y_min, x_max, y_max = get_box(face_landmarks.landmark, right_eye_ids, frame_width, frame_height)
             # Draw the rectangle around the right eye with green color and 2px thickness
-            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)
+            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), green_color, 2)
             # Extract the rectangle region as a new cropped image
             right_eye_crop = frame[y_min:y_max, x_min:x_max]
 
@@ -171,13 +172,14 @@ while True:
             lip_horizontal = np.linalg.norm(np.array(left_lip_point) - np.array(right_lip_point))
             lip_ratio = (lip_vertical / lip_horizontal) * 100
             list_of_lips_ratios.append(lip_ratio)
+            # Only the most recent 3 values are kept
             if len(list_of_lips_ratios) > 3:
                 list_of_lips_ratios.pop(0)
             # Average mouth aspect ratio
             average_ratio_lips = sum(list_of_lips_ratios) / len(list_of_lips_ratios)
 
-            # Check the lip average stayed over 30 for 2 seconds
-            if average_ratio_lips > 30:
+            # Check the lip average stayed 30 or more for 2 seconds
+            if average_ratio_lips >= 30:
                 if yawn_start_time is None:
                     # Initialize the timer to track for how long the mouth is open
                     yawn_start_time = time.time()
@@ -185,7 +187,7 @@ while True:
                 elif time.time() - yawn_start_time >= 2 and not yawn_detected:
                     yawn_detected = True
                     yawn_alert = True
-            # If average went below the 30, reset "yawn_start_time" & "yawn_detected" & "yawn_alert"
+            # If average went below the 30, reset variables
             else:
                 yawn_start_time = None
                 yawn_detected = False
@@ -198,16 +200,16 @@ while True:
         # If status stayed "Closed" for 1 seconds, sleepy is detected
         elif time.time() - closed_start_time >= 1 and not sleepy_detected:
             sleepy_detected = True
-            alert = True
+            closed_alert = True
 
-    # If status is not, reset "closed_start_time" & "sleepy_detected" & "alert"
+    # If status is not, reset variables
     else:
         closed_start_time = None
         sleepy_detected = False
-        alert = False
+        closed_alert = False
 
     # Display the status on the top left corner
-    color = (0, 0, 255) if eye_status == "Closed" else (0, 255, 0)
+    color = red_color if eye_status == "Closed" else green_color
     # Add the text to the frame (start at 30 from left and 50 from top)
     # With 1 as font scale and 2 as thickness
     cv2.putText(frame, eye_status, (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
@@ -215,21 +217,21 @@ while True:
     if sleepy_detected:
         # Display "Sleepy detected" (start at 30 from left and 100 from top)
         # With 1 as font scale and 2 as thickness
-        cv2.putText(frame, "Sleepy detected", (30, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        cv2.putText(frame, "Sleepy detected", (30, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
         # Play the alert
         os.system(f"mpg321 {file1}")
-        # Reset "closed_start_time" & "sleepy_detected" & "alert"
+        # Reset variables
         closed_start_time = None
         sleepy_detected = False
-        alert = False
+        closed_alert = False
     
     if yawn_detected and yawn_alert:
         # Display "Yawn detected" (start at 30 from left and 150 from top)
         # With 1 as font scale and 2 as thickness
-        cv2.putText(frame, "Yawn detected", (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        cv2.putText(frame, "Yawn detected", (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
         # Play the yawn_alert
         os.system(f"mpg321 {file2}")
-        # Reset "yawn_start_time" & "yawn_detected" & "yawn_alert"
+        # Reset variables
         yawn_start_time = None
         yawn_detected = False
         yawn_alert = False
