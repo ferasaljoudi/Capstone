@@ -13,13 +13,13 @@ sudo alsactl store
 
 ### Set the Default Sound Card
 
-- Create or edit the ALSA configuration file:
+- The `asound.conf` file is included in this directory. Replace 1 with the working card number. This file sets the default sound card so the Raspberry Pi knows which audio device to use for playback.
+- Create the ALSA configuration file:
 
 ```sh
 sudo nano /etc/asound.conf
 ```
 
-- The `asound.conf` file is included in this directory. Replace 1 with the working card number. This file sets the default sound card so the Raspberry Pi knows which audio device to use for playback.
 - Save the current ALSA setting:
 
 ```sh
@@ -28,13 +28,13 @@ sudo alsactl store
 
 ### Ensure Settings Restore on Boot
 
-- Create or edit the `rc.local` file:
+- The `rc.local` file is included in this directory. This file ensures that ALSA settings (like volume levels) are restored automatically during system boot.
+- Create `rc.local` file:
 
 ```sh
 sudo nano /etc/rc.local
 ```
 
-- The `rc.local` file is included in this directory. This file ensures that ALSA settings (like volume levels) are restored automatically during system boot.
 - Make the file executable:
 
 ```sh
@@ -43,22 +43,32 @@ sudo chmod +x /etc/rc.local
 
 ### Create and Enable the rc-local Service
 
-- Create or edit the `rc-local.service` File
+- The `rc-local.service` file is included in this directory. This file enables compatibility for the rc.local script with systemd, allowing it to run at startup.
+- Create `rc-local.service` file:
 
 ```sh
 sudo nano /etc/systemd/system/rc-local.service
 ```
 
-- The `rc-local.service` file is included in this directory. This file enables compatibility for the rc.local script with systemd, allowing it to run at startup.
-- Enable the rc-local Service:
+- Reloads the systemd manager configuration:
 
 ```sh
 sudo systemctl daemon-reload
+```
+
+- Configures the service to start automatically at boot:
+
+```sh
 sudo systemctl enable rc-local
+```
+
+- Starts the service immediately:
+
+```sh
 sudo systemctl start rc-local
 ```
 
-- Test and Verify:
+- Test and verify:
 
 ```sh
 sudo reboot
