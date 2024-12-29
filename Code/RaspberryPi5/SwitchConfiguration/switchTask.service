@@ -1,0 +1,17 @@
+[Unit]
+Description=Run testSwitch.py on startup
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/safedrive/capstone/eye_detection/switchTask.py
+WorkingDirectory=/home/safedrive/capstone/eye_detection
+Environment="LGPIONOTIFY=/home/safedrive/.lgpio"
+Environment="PATH=/home/safedrive/capstone/bin:/usr/bin"
+Environment="DISPLAY=:0"
+Environment="XDG_RUNTIME_DIR=/run/user/1000"
+Restart=always
+User=safedrive
+
+[Install]
+WantedBy=multi-user.target
