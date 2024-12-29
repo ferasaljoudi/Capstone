@@ -26,13 +26,13 @@ chown safedrive:safedrive /home/safedrive/.lgpio
 sudo systemctl daemon-reload
 ```
 
-- Configures the service to start automatically at boot:
+- Configure the service to start automatically at boot:
 
 ```sh
 sudo systemctl enable switchTask.service
 ```
 
-- Starts the service immediately:
+- Start the service immediately:
 
 ```sh
 sudo systemctl start switchTask.service
