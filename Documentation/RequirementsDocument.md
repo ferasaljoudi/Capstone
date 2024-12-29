@@ -270,5 +270,5 @@ The image above shows the variations within each class, highlighting different e
 
 # Analysis Models
 
-- [Block Diagram](HardwareDiagram/IFS_BlockDiagram.pdf)
-- [Schematic Diagram](HardwareDiagram/IFS_SchematicDiagram.pdf)
+- [Block Diagram](HardwareDiagrams/IFS_BlockDiagram.pdf)
+- [Schematic Diagram](HardwareDiagrams/IFS_SchematicDiagram.pdf)
