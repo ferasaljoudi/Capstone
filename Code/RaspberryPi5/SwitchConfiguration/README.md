@@ -1,3 +1,4 @@
+The goal is to be able to enable/disable the detection system via a switch when the Raspberry Pi is powered on, without any manual setup. In other words, when the Pi is powered on, we want to the `switchTask.py` to be running automatically, and when we turn the switch on, the detection system should run.
 
 - The `switchTask.service` file is included in this directory. This file is required to run `switchTask.py` automatically when the Raspberry Pi starts. It ensures the script listens for the switch state.
 - Create `switchTask.service` file:
@@ -36,4 +37,3 @@ sudo systemctl enable switchTask.service
 ```sh
 sudo systemctl start switchTask.service
 ```
-
