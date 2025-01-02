@@ -1,7 +1,9 @@
 import os
 import time
+from collections import deque
 
 import cv2
+import matplotlib.pyplot as plt
 import mediapipe as mp
 import numpy as np
 
@@ -26,6 +28,35 @@ list_of_lips_ratios = []
 
 blink_counter = 0
 counter = 0
+
+green_color = (0, 255, 0)
+red_color = (0, 0, 255)
+
+# Creating a double ended queue for plotting in real-time
+plot_data = deque(maxlen=100)
+lip_plot_data = deque(maxlen=100)
+
+# Set up the plots and enable interactive mode for live updating
+plt.ion()
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 8))
+# Add padding between the two graphs
+fig.tight_layout(pad=4.0)
+
+# Eye ratio plot settings
+line1, = ax1.plot([], [], lw=2, color='green')
+ax1.set_ylim(0, 50)
+ax1.set_xlim(0, 100)
+ax1.set_xlabel("Frame")
+ax1.set_ylabel("Eye Aspect Ratio")
+ax1.set_title("Eye Aspect Ratio Over Time")
+
+# Mouth ratio plot settings
+line2, = ax2.plot([], [], lw=2, color='green')
+ax2.set_ylim(0, 100)
+ax2.set_xlim(0, 100)
+ax2.set_xlabel("Frame")
+ax2.set_ylabel("Mouth Aspect Ratio")
+ax2.set_title("Mouth Aspect Ratio Over Time")
 
 # Open the video
 cap = cv2.VideoCapture(0)
@@ -76,6 +107,8 @@ while True:
                 x = int(face_landmarks.landmark[id].x * w)
                 y = int(face_landmarks.landmark[id].y * h)
                 left_coords.append((x, y))
+                # Draw landmark points
+                cv2.circle(frame, (x, y), 2, green_color, cv2.FILLED)
 
             if len(left_coords) == 4:
                 # Calculate vertical and horizontal distances
@@ -100,6 +133,8 @@ while True:
                 x = int(face_landmarks.landmark[id].x * w)
                 y = int(face_landmarks.landmark[id].y * h)
                 right_coords.append((x, y))
+                # Draw landmark points
+                cv2.circle(frame, (x, y), 2, green_color, cv2.FILLED)
 
             if len(right_coords) == 4:
                 # Calculate vertical and horizontal distances
@@ -130,8 +165,8 @@ while True:
                 if counter > 10:
                     counter = 0
 
-            # Check the eye closed based on if the average stayed 25 or less for 1 seconds
-            if average_ratio_eyes <= 25:
+            # Check the eye closed based on if the average stayed 26 or less for 1 seconds
+            if average_ratio_eyes <= 26:
                 if closed_start_time is None:
                     # Initialize the timer to track for how long the status will stay "Closed"
                     closed_start_time = time.time()
@@ -139,13 +174,21 @@ while True:
                 elif time.time() - closed_start_time >= 1 and not sleepy_detected:
                     sleepy_detected = True
                     closed_alert = True
-            # If average went above the 25, reset variables
+            # If average went above the 26, reset variables
             else:
                 closed_start_time = None
                 sleepy_detected = False
                 closed_alert = False
 
+            # Display the blink count on the top left corner
+            # Start at 30 from left and 50 from top, with 1 as font scale and 2 as thickness
+            cv2.putText(frame, f'Blink Count: {blink_counter}', (30, 50),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1, green_color, 2)
+
             if sleepy_detected and closed_alert:
+                # Display "Sleepy detected" (start at 30 from left and 100 from top)
+                # With 1 as font scale and 2 as thickness
+                cv2.putText(frame, "Sleepy detected", (30, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
                 # Play the closed_alert
                 os.system(f"mpg321 {file1}")
                 # Reset variables
@@ -164,6 +207,12 @@ while True:
             lower_lip_point = (int(lower_lip.x * w), int(lower_lip.y * h))
             left_lip_point = (int(left_lip.x * w), int(left_lip.y * h))
             right_lip_point = (int(right_lip.x * w), int(right_lip.y * h))
+
+            # Draw points on the lips
+            cv2.circle(frame, upper_lip_point, 2, green_color, cv2.FILLED)
+            cv2.circle(frame, lower_lip_point, 2, green_color, cv2.FILLED)
+            cv2.circle(frame, left_lip_point, 2, green_color, cv2.FILLED)
+            cv2.circle(frame, right_lip_point, 2, green_color, cv2.FILLED)
 
             # Calculate the mouth aspect ratio
             lip_vertical = np.linalg.norm(np.array(upper_lip_point) - np.array(lower_lip_point))
@@ -191,6 +240,9 @@ while True:
                 yawn_alert = False
 
             if yawn_detected and yawn_alert:
+                # Display "Yawn detected" (start at 30 from left and 150 from top)
+                # With 1 as font scale and 2 as thickness
+                cv2.putText(frame, "Yawn detected", (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
                 # Play the yawn_alert
                 os.system(f"mpg321 {file2}")
                 # Reset variables
@@ -198,12 +250,33 @@ while True:
                 yawn_detected = False
                 yawn_alert = False
 
+            # Update plot data for lips
+            lip_plot_data.append(average_ratio_lips)
+            line2.set_ydata(list(lip_plot_data))
+            line2.set_xdata(range(len(lip_plot_data)))
+            ax2.set_xlim(0, len(lip_plot_data))
+
+            # Update plot data for eye
+            plot_data.append(average_ratio_eyes)
+            line1.set_ydata(list(plot_data))
+            line1.set_xdata(range(len(plot_data)))
+            ax1.set_xlim(0, len(plot_data))
+
+            # Refresh the plots
+            fig.canvas.draw()
+            fig.canvas.flush_events()
+
+    # Show the video frame with landmarks
+    cv2.imshow('MediaPipe FaceMesh', frame)
+
     # Break if 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         # Play system is off
         os.system(f"mpg321 {file4}")
         break
 
-# Release the video capture
+# Release the video capture and close the windows
 cap.release()
-face_mesh.close()
+cv2.destroyAllWindows()
+plt.ioff()
+plt.show()
