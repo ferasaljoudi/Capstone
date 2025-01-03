@@ -46,7 +46,7 @@ def prepare_eye_for_model(eye_img):
 # so not the entire frame is used to be processed with the model.
 # The result frame of this box is the area of the eye being processed with the model.
 # The margin value was determined through a few experiments.
-def get_box(landmarks, ids, width, height, margin=11):
+def get_box(landmarks, ids, width, height, margin=10):
     x_coords = [int(landmarks[id].x * width) for id in ids]
     y_coords = [int(landmarks[id].y * height) for id in ids]
     x_min, x_max = min(x_coords), max(x_coords)
