@@ -63,5 +63,8 @@ mkdir capstone/eye_detection
 cd capstone/eye_detection
 
 # Create python script and run it
-nano eye_detection_rpi.py
-python eye_detection_rpi.py
+nano eye_detection_tflite.py
+python eye_detection_tflite.py
+
+# To deactivate the environment
+deactivate
