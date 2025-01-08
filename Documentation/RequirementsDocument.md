@@ -197,7 +197,7 @@ The image above shows the variations within each class, highlighting different e
 ## User Interfaces
 
 - <b>Power Connection:</b> The driver connects the step-down converter to the car's 12V power system via a USB port. The converter provides 5V power to the Raspberry Pi through a USB-C connection.
-- <b>Switch/button:</b> The driver interacts with the system through a physical switch connected to the GPIO, enabling or disabling the program.
+- <b>Switch:</b> The driver interacts with the system through a physical switch connected to the GPIO, enabling or disabling the program.
 - <b>Speaker Alerts:</b> Alerts are provided through the speaker to notify the driver of detected drowsiness.
 - <b>Camera Positioning:</b> The camera is positioned to face the driver and requires no further user interaction once set up.
 
@@ -210,7 +210,7 @@ The image above shows the variations within each class, highlighting different e
     - <b>Option 1:</b> Raspberry Pi Camera Module 3 connected via CSI (Camera Serial Interface).
     - <b>Option 2:</b> USB-connected HD Webcam 1080P.
 - <b>Speaker:</b> Mini External USB Stereo Speaker connected directly to the Raspberry Pi via USB.
-- <b>Switch/button:</b> Physical GPIO-connected switch or button for enabling/disabling the system.
+- <b>Switch:</b> Physical GPIO-connected switch for enabling/disabling the system.
 
 ## Software Interfaces
 
