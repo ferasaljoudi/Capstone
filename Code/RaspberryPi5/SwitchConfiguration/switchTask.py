@@ -42,6 +42,7 @@ try:
                 process = None
                 # Play system is off
                 os.system(f"mpg321 {file1}")
+                last_played = time.time()
             
             # Play a reminder every 10 minutes
             if time.time() - last_played >= 600:
