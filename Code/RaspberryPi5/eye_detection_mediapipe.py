@@ -39,6 +39,26 @@ def calculate_mouth_ratio(upper_lip, lower_lip, left_lip, right_lip):
     # Return mouth aspect ratio
     return (vertical / horizontal) * 100
 
+# Function to check if yawn is detected
+def detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert, threshold=30, duration=2):
+    # Check the lip average stayed at (or more than) threshold for 2 seconds
+    if average_ratio_lips >= threshold:
+        if yawn_start_time is None:
+            # Initialize the timer to track for how long the mouth is open
+            yawn_start_time = time.time()
+        elif time.time() - yawn_start_time >= duration and not yawn_detected:
+            # If mouth stayed open for 2 seconds, yawn is detected
+            yawn_detected = True
+            yawn_alert = True
+    else:
+        # Reset variables if the ratio falls below the threshold
+        yawn_start_time = None
+        yawn_detected = False
+        yawn_alert = False
+
+    # Return the updated (yawn_start_time, yawn_detected, yawn_alert)
+    return yawn_start_time, yawn_detected, yawn_alert
+
 # Main logic
 def main():
     # Lists to store eye and mouth ratios
@@ -182,20 +202,8 @@ def main():
                 # Average mouth aspect ratio
                 average_ratio_lips = sum(list_of_lips_ratios) / len(list_of_lips_ratios)
 
-                # Check the lip average stayed 30 or more for 2 seconds
-                if average_ratio_lips >= 30:
-                    if yawn_start_time is None:
-                        # Initialize the timer to track for how long the mouth is open
-                        yawn_start_time = time.time()
-                    # If mouth stayed open for 2 seconds, yawn is detected
-                    elif time.time() - yawn_start_time >= 2 and not yawn_detected:
-                        yawn_detected = True
-                        yawn_alert = True
-                # If average went below the 30, reset variables
-                else:
-                    yawn_start_time = None
-                    yawn_detected = False
-                    yawn_alert = False
+                # Call the detect_yawn function to check if yawn detected
+                yawn_start_time, yawn_detected, yawn_alert = detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert)
 
                 if yawn_detected and yawn_alert:
                     # Play the yawn_alert
