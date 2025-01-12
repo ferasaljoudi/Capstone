@@ -24,7 +24,6 @@ def calculate_eye_ratio(coords):
     if len(coords) != 4:
         # Default high value if landmarks are missing
         return 100
-
     # Calculate vertical and horizontal distances
     vertical_distance = np.linalg.norm(np.array(coords[0]) - np.array(coords[1]))
     horizontal_distance = np.linalg.norm(np.array(coords[2]) - np.array(coords[3]))
@@ -55,9 +54,26 @@ def detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert, 
         yawn_start_time = None
         yawn_detected = False
         yawn_alert = False
-
     # Return the updated (yawn_start_time, yawn_detected, yawn_alert)
     return yawn_start_time, yawn_detected, yawn_alert
+
+# Function to check if closed eyes are detected
+def detect_eye_closure(average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, threshold=25, duration=1):
+    # Check the eye closed based on if the average stayed at (or less than) threshold for 1 seconds
+    if average_ratio_eyes <= threshold:
+        if closed_start_time is None:
+            # Initialize the timer to track for how long the eyes are closed
+            closed_start_time = time.time()
+        elif time.time() - closed_start_time >= duration and not sleepy_detected:
+            sleepy_detected = True
+            closed_alert = True
+    else:
+        # If average went above the threshold, reset variables
+        closed_start_time = None
+        sleepy_detected = False
+        closed_alert = False
+    # Return the updated (closed_start_time, sleepy_detected, closed_alert)
+    return closed_start_time, sleepy_detected, closed_alert
 
 # Main logic
 def main():
@@ -158,20 +174,8 @@ def main():
                     if counter > 10:
                         counter = 0
 
-                # Check the eye closed based on if the average stayed 25 or less for 1 seconds
-                if average_ratio_eyes <= 25:
-                    if closed_start_time is None:
-                        # Initialize the timer to track for how long the status will stay "Closed"
-                        closed_start_time = time.time()
-                    # If status stayed "Closed" for 1 seconds, sleepy is detected
-                    elif time.time() - closed_start_time >= 1 and not sleepy_detected:
-                        sleepy_detected = True
-                        closed_alert = True
-                # If average went above the 25, reset variables
-                else:
-                    closed_start_time = None
-                    sleepy_detected = False
-                    closed_alert = False
+                # Call the detect_eye_closure function to check if closed eyes are detected
+                closed_start_time, sleepy_detected, closed_alert = detect_eye_closure(average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert)
 
                 if sleepy_detected and closed_alert:
                     # Play the closed_alert

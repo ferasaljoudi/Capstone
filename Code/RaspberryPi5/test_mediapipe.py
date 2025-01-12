@@ -2,7 +2,9 @@ import time
 import unittest
 
 from eye_detection_mediapipe import (calculate_eye_ratio,
-                                    calculate_mouth_ratio, detect_yawn)
+                                     calculate_mouth_ratio, detect_eye_closure,
+                                     detect_yawn)
+
 
 class TestDrowsinessDetection(unittest.TestCase):
     def test_valid_eye_ratio(self):
@@ -91,6 +93,62 @@ class TestDrowsinessDetection(unittest.TestCase):
         # Yawn should be detected
         self.assertTrue(new_yawn_detected)
         self.assertTrue(new_yawn_alert)
+
+    def test_eye_closure_detection_below_boundary1(self):
+        # Assume yawn started 0.9 second ago
+        closed_start_time = time.time() - 0.9
+        # At threshold
+        average_ratio_eyes = 25
+        # Default variables
+        sleepy_detected, closed_alert = False, False
+        new_closed_start_time, new_sleepy_detected, new_closed_alert = detect_eye_closure(
+            average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, threshold=25, duration=1
+        )
+        # Sleepy should not be detected
+        self.assertFalse(new_sleepy_detected)
+        self.assertFalse(new_closed_alert)
+
+    def test_eye_closure_detection_below_boundary2(self):
+        # Assume yawn started 1 second ago
+        closed_start_time = time.time() - 1
+        # Below threshold
+        average_ratio_eyes = 24.9
+        # Default variables
+        sleepy_detected, closed_alert = False, False
+        new_closed_start_time, new_sleepy_detected, new_closed_alert = detect_eye_closure(
+            average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, threshold=25, duration=1
+        )
+        # Sleepy should be detected
+        self.assertTrue(new_sleepy_detected)
+        self.assertTrue(new_closed_alert)
+
+    def test_eye_closure_detection_at_boundary(self):
+        # Assume yawn started 1 second ago
+        closed_start_time = time.time() - 1
+        # At threshold
+        average_ratio_eyes = 25
+        # Default variables
+        sleepy_detected, closed_alert = False, False
+        new_closed_start_time, new_sleepy_detected, new_closed_alert = detect_eye_closure(
+            average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, threshold=25, duration=1
+        )
+        # Sleepy should be detected
+        self.assertTrue(new_sleepy_detected)
+        self.assertTrue(new_closed_alert)
+
+    def test_eye_closure_detection_above_boundary(self):
+        # Assume yawn started 1.1 second ago
+        closed_start_time = time.time() - 1.1
+        # Above threshold
+        average_ratio_eyes = 25.1
+        # Default variables
+        sleepy_detected, closed_alert = False, False
+        new_closed_start_time, new_sleepy_detected, new_closed_alert = detect_eye_closure(
+            average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, threshold=25, duration=1
+        )
+        # Sleepy should not be detected
+        self.assertFalse(new_sleepy_detected)
+        self.assertFalse(new_closed_alert)
 
 if __name__ == "__main__":
     unittest.main()
