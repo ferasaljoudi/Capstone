@@ -34,8 +34,8 @@ Below is a description of the contents in this directory, outlining the setup an
 ### `eye_detection_tflite.py` And `tflite_visual.py`
 
 - The detection in these files are done as below:
-    - TFlite model to detect the closed eyes.
-    - MediaPipe to detect the yawn.
+  - TFlite model to detect the closed eyes.
+  - MediaPipe to detect the yawn.
 - These two files do the same detection and alert tasks in the same way.
 - The `tflite_visual.py` file include the extra visual display which was used to test and view the result in the development stage.
 - The `eye_detection_tflite.py` file is the final script ready to be used without a display.
@@ -46,3 +46,9 @@ Below is a description of the contents in this directory, outlining the setup an
 - These two files do the same detection and alert tasks in the same way.
 - The `mediapipe _visual.py` file include the extra visual display which was used to test and view the result in the development stage.
 - The `eye_detection_mediapipe.py` file is the final script ready to be used without a display.
+
+### `test_mediapipe.py` And `test_tflite.py`
+
+- These files contain unit tests for the functions in the detection scripts (`eye_detection_mediapipe.py` and `eye_detection_tflite.py`), ensuring accuracy and reliability of the detection logic.
+- The tests validate the preprocessing functions, bounding box calculations, and detection logic under simulated conditions.
+- Designed to confirm that critical components behave as expected during development and before deployment.
