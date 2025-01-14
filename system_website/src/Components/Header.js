@@ -4,8 +4,9 @@ import "./Header.css";
 function Header() {
     return (
         <header className="header">
-        Header Section
-        </header>
+        <div className="header-background"></div>
+        <h1>IFS-DriverAlert</h1>
+    </header>
     );
 }
 
