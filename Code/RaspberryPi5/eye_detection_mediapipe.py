@@ -24,6 +24,7 @@ def calculate_eye_ratio(coords):
     if len(coords) != 4:
         # Default high value if landmarks are missing
         return 100
+
     # Calculate vertical and horizontal distances
     vertical_distance = np.linalg.norm(np.array(coords[0]) - np.array(coords[1]))
     horizontal_distance = np.linalg.norm(np.array(coords[2]) - np.array(coords[3]))
@@ -35,6 +36,8 @@ def calculate_mouth_ratio(upper_lip, lower_lip, left_lip, right_lip):
     # Calculate vertical and horizontal distances
     vertical = np.linalg.norm(np.array(upper_lip) - np.array(lower_lip))
     horizontal = np.linalg.norm(np.array(left_lip) - np.array(right_lip))
+    if horizontal == 0:
+        raise ValueError("Horizontal distance can not be zero.")
     # Return mouth aspect ratio
     return (vertical / horizontal) * 100
 
@@ -54,6 +57,7 @@ def detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert, 
         yawn_start_time = None
         yawn_detected = False
         yawn_alert = False
+
     # Return the updated (yawn_start_time, yawn_detected, yawn_alert)
     return yawn_start_time, yawn_detected, yawn_alert
 
@@ -72,6 +76,7 @@ def detect_eye_closure(average_ratio_eyes, closed_start_time, sleepy_detected, c
         closed_start_time = None
         sleepy_detected = False
         closed_alert = False
+
     # Return the updated (closed_start_time, sleepy_detected, closed_alert)
     return closed_start_time, sleepy_detected, closed_alert
 
