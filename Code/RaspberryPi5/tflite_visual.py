@@ -146,6 +146,37 @@ while True:
                 if left_eye_pred == 0 and right_eye_pred == 0:
                     eye_status = "Closed"
             
+            if eye_status == "Closed":
+                if closed_start_time is None:
+                    # Initialize the timer to track for how long the status will stay "Closed"
+                    closed_start_time = time.time()
+                # If status stayed "Closed" for 1 seconds, sleepy is detected
+                elif time.time() - closed_start_time >= 1 and not sleepy_detected:
+                    sleepy_detected = True
+                    closed_alert = True
+            # If status is not, reset variables
+            else:
+                closed_start_time = None
+                sleepy_detected = False
+                closed_alert = False
+
+            # Display the status on the top left corner
+            color = red_color if eye_status == "Closed" else green_color
+            # Add the text to the frame (start at 30 from left and 50 from top)
+            # With 1 as font scale and 2 as thickness
+            cv2.putText(frame, eye_status, (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
+
+            if sleepy_detected and closed_alert:
+                # Display "Sleepy detected" (start at 30 from left and 100 from top)
+                # With 1 as font scale and 2 as thickness
+                cv2.putText(frame, "Sleepy detected", (30, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
+                # Play the alert
+                os.system(f"mpg321 {file1}")
+                # Reset variables
+                closed_start_time = None
+                sleepy_detected = False
+                closed_alert = False
+        
             # Get frame dimensions for scaling landmarks
             h, w, _ = frame.shape
             
@@ -192,49 +223,17 @@ while True:
                 yawn_start_time = None
                 yawn_detected = False
                 yawn_alert = False
-
-    if eye_status == "Closed":
-        if closed_start_time is None:
-            # Initialize the timer to track for how long the status will stay "Closed"
-            closed_start_time = time.time()
-        # If status stayed "Closed" for 1 seconds, sleepy is detected
-        elif time.time() - closed_start_time >= 1 and not sleepy_detected:
-            sleepy_detected = True
-            closed_alert = True
-
-    # If status is not, reset variables
-    else:
-        closed_start_time = None
-        sleepy_detected = False
-        closed_alert = False
-
-    # Display the status on the top left corner
-    color = red_color if eye_status == "Closed" else green_color
-    # Add the text to the frame (start at 30 from left and 50 from top)
-    # With 1 as font scale and 2 as thickness
-    cv2.putText(frame, eye_status, (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
-
-    if sleepy_detected and closed_alert:
-        # Display "Sleepy detected" (start at 30 from left and 100 from top)
-        # With 1 as font scale and 2 as thickness
-        cv2.putText(frame, "Sleepy detected", (30, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
-        # Play the alert
-        os.system(f"mpg321 {file1}")
-        # Reset variables
-        closed_start_time = None
-        sleepy_detected = False
-        closed_alert = False
-    
-    if yawn_detected and yawn_alert:
-        # Display "Yawn detected" (start at 30 from left and 150 from top)
-        # With 1 as font scale and 2 as thickness
-        cv2.putText(frame, "Yawn detected", (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
-        # Play the yawn_alert
-        os.system(f"mpg321 {file2}")
-        # Reset variables
-        yawn_start_time = None
-        yawn_detected = False
-        yawn_alert = False
+            
+            if yawn_detected and yawn_alert:
+                # Display "Yawn detected" (start at 30 from left and 150 from top)
+                # With 1 as font scale and 2 as thickness
+                cv2.putText(frame, "Yawn detected", (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, red_color, 2)
+                # Play the yawn_alert
+                os.system(f"mpg321 {file2}")
+                # Reset variables
+                yawn_start_time = None
+                yawn_detected = False
+                yawn_alert = False
 
     # Show the video feed
     cv2.imshow("Live Eye Detection", frame)
