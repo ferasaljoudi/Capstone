@@ -58,7 +58,7 @@ def detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert, 
     return yawn_start_time, yawn_detected, yawn_alert
 
 # Function to check if closed eyes are detected
-def detect_eye_closure(average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, threshold=25, duration=1):
+def detect_eye_closure(average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, threshold=24, duration=1):
     # Check the eye closed based on if the average stayed at (or less than) threshold for 1 seconds
     if average_ratio_eyes <= threshold:
         if closed_start_time is None:
@@ -73,6 +73,28 @@ def detect_eye_closure(average_ratio_eyes, closed_start_time, sleepy_detected, c
         sleepy_detected = False
         closed_alert = False
     # Return the updated (closed_start_time, sleepy_detected, closed_alert)
+    return closed_start_time, sleepy_detected, closed_alert
+
+# Function to play yawn alert
+def yawn_alert_func(yawn_start_time, yawn_detected, yawn_alert, file2):
+    if yawn_detected and yawn_alert:
+        # Play the yawn_alert
+        os.system(f"mpg321 {file2}")
+        # Reset variables
+        yawn_start_time = None
+        yawn_detected = False
+        yawn_alert = False
+    return yawn_start_time, yawn_detected, yawn_alert
+
+# Function to play closed alert
+def closed_alert_func(closed_start_time, sleepy_detected, closed_alert, file1):
+    if sleepy_detected and closed_alert:
+        # Play the closed_alert
+        os.system(f"mpg321 {file1}")
+        # Reset variables
+        closed_start_time = None
+        sleepy_detected = False
+        closed_alert = False
     return closed_start_time, sleepy_detected, closed_alert
 
 # Main logic
@@ -164,8 +186,8 @@ def main():
                 # Calculate average eye ratio for both eyes
                 average_ratio_eyes = (ratio_average_left + ratio_average_right) / 2
 
-                # Check blink condition and increment the blink counter if average 26 or less
-                if average_ratio_eyes <= 26 and counter == 0:
+                # Check blink condition and increment the blink counter if average 25 or less
+                if average_ratio_eyes <= 25 and counter == 0:
                     blink_counter += 1
                     counter = 1
                 if counter != 0:
@@ -177,13 +199,8 @@ def main():
                 # Call the detect_eye_closure function to check if closed eyes are detected
                 closed_start_time, sleepy_detected, closed_alert = detect_eye_closure(average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert)
 
-                if sleepy_detected and closed_alert:
-                    # Play the closed_alert
-                    os.system(f"mpg321 {file1}")
-                    # Reset variables
-                    closed_start_time = None
-                    sleepy_detected = False
-                    closed_alert = False
+                # Call the closed alert function
+                closed_start_time, sleepy_detected, closed_alert = closed_alert_func(closed_start_time, sleepy_detected, closed_alert, file1)
 
                 # Process lips
                 upper_lip = face_landmarks.landmark[upper_lip_top]
@@ -205,17 +222,12 @@ def main():
                     list_of_lips_ratios.pop(0)
                 # Average mouth aspect ratio
                 average_ratio_lips = sum(list_of_lips_ratios) / len(list_of_lips_ratios)
-
+                
                 # Call the detect_yawn function to check if yawn detected
                 yawn_start_time, yawn_detected, yawn_alert = detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert)
 
-                if yawn_detected and yawn_alert:
-                    # Play the yawn_alert
-                    os.system(f"mpg321 {file2}")
-                    # Reset variables
-                    yawn_start_time = None
-                    yawn_detected = False
-                    yawn_alert = False
+                # Call the yawn alert function
+                yawn_start_time, yawn_detected, yawn_alert = yawn_alert_func(yawn_start_time, yawn_detected, yawn_alert, file2)
 
         # Break if 'q' is pressed
         if cv2.waitKey(1) & 0xFF == ord('q'):

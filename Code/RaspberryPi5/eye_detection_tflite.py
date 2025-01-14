@@ -92,7 +92,30 @@ def detect_eye_closure(eye_status, closed_start_time, sleepy_detected, closed_al
         closed_start_time = None
         sleepy_detected = False
         closed_alert = False
+
     # Return the updated (closed_start_time, sleepy_detected, closed_alert)
+    return closed_start_time, sleepy_detected, closed_alert
+
+# Function to play yawn alert
+def yawn_alert_func(yawn_start_time, yawn_detected, yawn_alert, file2):
+    if yawn_detected and yawn_alert:
+        # Play the yawn_alert
+        os.system(f"mpg321 {file2}")
+        # Reset variables
+        yawn_start_time = None
+        yawn_detected = False
+        yawn_alert = False
+    return yawn_start_time, yawn_detected, yawn_alert
+
+# Function to play closed alert
+def closed_alert_func(closed_start_time, sleepy_detected, closed_alert, file1):
+    if sleepy_detected and closed_alert:
+        # Play the closed_alert
+        os.system(f"mpg321 {file1}")
+        # Reset variables
+        closed_start_time = None
+        sleepy_detected = False
+        closed_alert = False
     return closed_start_time, sleepy_detected, closed_alert
 
 # Main logic
@@ -125,7 +148,7 @@ def main():
 
     # Play system is on
     os.system(f"mpg321 {file3}")
-    
+
     while True:
         success, frame = cap.read()
         if not success:
@@ -152,20 +175,20 @@ def main():
                 x_min, y_min, x_max, y_max = get_box(face_landmarks.landmark, left_eye_ids, frame_width, frame_height)
                 # Extract the rectangle region as a new cropped image
                 left_eye_crop = frame[y_min:y_max, x_min:x_max]
-                
+
                 # Right eye landmarks
                 right_eye_ids = [263, 362, 387, 373, 374, 380, 381, 382, 384, 386, 388]
                 # Get the eye region through the get_box function
                 x_min, y_min, x_max, y_max = get_box(face_landmarks.landmark, right_eye_ids, frame_width, frame_height)
                 # Extract the rectangle region as a new cropped image
                 right_eye_crop = frame[y_min:y_max, x_min:x_max]
-                
+
                 # Predict eye states
                 if left_eye_crop.size > 0 and right_eye_crop.size > 0:
                     # Process both eyes images
                     left_eye_processed = prepare_eye_for_model(left_eye_crop)
                     right_eye_processed = prepare_eye_for_model(right_eye_crop)
-                    
+
                     # Set the preprocessed left eye image as input to the model
                     interpreter.set_tensor(input_details[0]['index'], left_eye_processed)
                     # Process the input data through the model
@@ -173,7 +196,7 @@ def main():
                     # Get the model's output for the left eye
                     # np.argmax extracts the predicted class with the highest probability
                     left_eye_pred = np.argmax(interpreter.get_tensor(output_details[0]['index']))
-                    
+
                     # Set the preprocessed right eye image as input to the model
                     interpreter.set_tensor(input_details[0]['index'], right_eye_processed)
                     # Process the input data through the model
@@ -181,10 +204,16 @@ def main():
                     # Get the model's output for the right eye
                     # np.argmax extracts the predicted class with the highest probability
                     right_eye_pred = np.argmax(interpreter.get_tensor(output_details[0]['index']))
-                    
+
                     # The status will be "Closed" if both eyes are closed
                     if left_eye_pred == 0 and right_eye_pred == 0:
                         eye_status = "Closed"
+                
+                # Call the detect_eye_closure function to check if closed eyes are detected
+                closed_start_time, sleepy_detected, closed_alert = detect_eye_closure(eye_status, closed_start_time, sleepy_detected, closed_alert)
+
+                # Call the closed alert function
+                closed_start_time, sleepy_detected, closed_alert = closed_alert_func(closed_start_time, sleepy_detected, closed_alert, file1)
                 
                 # Get frame dimensions for scaling landmarks
                 h, w, _ = frame.shape
@@ -194,13 +223,13 @@ def main():
                 lower_lip = face_landmarks.landmark[lower_lip_bottom]
                 left_lip = face_landmarks.landmark[lip_left]
                 right_lip = face_landmarks.landmark[lip_right]
-                
+
                 # Convert lip landmarks to pixel coordinates
                 upper_lip_point = (int(upper_lip.x * w), int(upper_lip.y * h))
                 lower_lip_point = (int(lower_lip.x * w), int(lower_lip.y * h))
                 left_lip_point = (int(left_lip.x * w), int(left_lip.y * h))
                 right_lip_point = (int(right_lip.x * w), int(right_lip.y * h))
-                
+
                 # Get the mouth aspect ratio
                 lip_ratio = calculate_mouth_ratio(upper_lip_point, lower_lip_point, left_lip_point, right_lip_point)
                 list_of_lips_ratios.append(lip_ratio)
@@ -209,29 +238,13 @@ def main():
                     list_of_lips_ratios.pop(0)
                 # Average mouth aspect ratio
                 average_ratio_lips = sum(list_of_lips_ratios) / len(list_of_lips_ratios)
-                
+
                 # Call the detect_yawn function to check if yawn detected
                 yawn_start_time, yawn_detected, yawn_alert = detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert)
-        
-        # Call the detect_eye_closure function to check if closed eyes are detected
-        closed_start_time, sleepy_detected, closed_alert = detect_eye_closure(eye_status, closed_start_time, sleepy_detected, closed_alert)
-        
-        if sleepy_detected and closed_alert:
-            # Play the alert
-            os.system(f"mpg321 {file1}")
-            # Reset variables
-            closed_start_time = None
-            sleepy_detected = False
-            closed_alert = False
-        
-        if yawn_detected and yawn_alert:
-            # Play the yawn_alert
-            os.system(f"mpg321 {file2}")
-            # Reset variables
-            yawn_start_time = None
-            yawn_detected = False
-            yawn_alert = False
-        
+                
+                # Call the yawn alert function
+                yawn_start_time, yawn_detected, yawn_alert = yawn_alert_func(yawn_start_time, yawn_detected, yawn_alert, file2)
+
         # Break if 'q' is pressed
         if cv2.waitKey(1) & 0xFF == ord('q'):
             # Play system is off

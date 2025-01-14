@@ -155,8 +155,8 @@ while True:
             # Calculate average eye ratio for both eyes
             average_ratio_eyes = (ratio_average_left + ratio_average_right) / 2
 
-            # Check blink condition and increment the blink counter if average 26 or less
-            if average_ratio_eyes <= 26 and counter == 0:
+            # Check blink condition and increment the blink counter if average 25 or less
+            if average_ratio_eyes <= 25 and counter == 0:
                 blink_counter += 1
                 counter = 1
             if counter != 0:
@@ -165,8 +165,8 @@ while True:
                 if counter > 10:
                     counter = 0
 
-            # Check the eye closed based on if the average stayed 26 or less for 1 seconds
-            if average_ratio_eyes <= 26:
+            # Check the eye closed based on if the average stayed 24 or less for 1 seconds
+            if average_ratio_eyes <= 24:
                 if closed_start_time is None:
                     # Initialize the timer to track for how long the status will stay "Closed"
                     closed_start_time = time.time()
@@ -174,7 +174,7 @@ while True:
                 elif time.time() - closed_start_time >= 1 and not sleepy_detected:
                     sleepy_detected = True
                     closed_alert = True
-            # If average went above the 26, reset variables
+            # If average went above the 24, reset variables
             else:
                 closed_start_time = None
                 sleepy_detected = False
