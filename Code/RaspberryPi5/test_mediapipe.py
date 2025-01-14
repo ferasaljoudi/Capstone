@@ -41,6 +41,18 @@ class TestDrowsinessDetection(unittest.TestCase):
         result = calculate_mouth_ratio(upper_lip, lower_lip, left_lip, right_lip)
         self.assertAlmostEqual(result, expected_ratio, places=2)
         
+    def test_nonvalid_mouth_ratio(self):
+        # Simulate valid mouth landmarks
+        upper_lip = (20, 40)
+        lower_lip = (20, 10)
+        left_lip = (40, 25)
+        right_lip = (40, 25)
+        # Horizontal distance will be 0 which is not allowed
+        with self.assertRaises(ValueError) as context:
+                calculate_mouth_ratio(upper_lip, lower_lip, left_lip, right_lip)
+        # Verify the error message
+        self.assertEqual(str(context.exception), "Horizontal distance can not be zero.")
+
     def test_no_yawn_detected_below_boundary1(self):
         # Assume yawn started less than 2 seconds ago
         yawn_start_time = time.time() - 1.9
@@ -152,7 +164,7 @@ class TestDrowsinessDetection(unittest.TestCase):
     def test_eye_closure_detected_and_alert(self):
         # Assume closed started 1.2 second ago
         closed_start_time = time.time() - 1.2
-        # Above threshold
+        # Below threshold
         average_ratio_eyes = 23
         # Default variables
         sleepy_detected, closed_alert = False, False
@@ -171,6 +183,31 @@ class TestDrowsinessDetection(unittest.TestCase):
             new_closed_start_time, new_sleepy_detected, new_closed_alert, file1)
         # Variables must be reseted at this point
         self.assertIsNone(new_closed_start_time)
+        self.assertFalse(new_sleepy_detected)
+        self.assertFalse(new_closed_alert)
+
+    def test_eye_closure_notdetected_and_alert(self):
+        # Assume closed started 0.7 second ago
+        closed_start_time = time.time() - 0.7
+        # Below threshold
+        average_ratio_eyes = 22
+        # Default variables
+        sleepy_detected, closed_alert = False, False
+        new_closed_start_time, new_sleepy_detected, new_closed_alert = detect_eye_closure(
+            average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, threshold=24, duration=1
+        )
+        # Sleepy should not be detected
+        self.assertIsNotNone(new_closed_start_time)
+        self.assertFalse(new_sleepy_detected)
+        self.assertFalse(new_closed_alert)
+        
+        # Path to the audio alert
+        file1 = "focus_on_the_road.mp3"
+        # call the alert function
+        new_closed_start_time, new_sleepy_detected, new_closed_alert = closed_alert_func(
+            new_closed_start_time, new_sleepy_detected, new_closed_alert, file1)
+        # Variables must stay same
+        self.assertIsNotNone(new_closed_start_time)
         self.assertFalse(new_sleepy_detected)
         self.assertFalse(new_closed_alert)
         
@@ -195,6 +232,30 @@ class TestDrowsinessDetection(unittest.TestCase):
             new_yawn_start_time, new_yawn_detected, new_yawn_alert, file2)
         # Variables must be reseted at this point
         self.assertIsNone(new_yawn_start_time)
+        self.assertFalse(new_yawn_detected)
+        self.assertFalse(new_yawn_alert)
+        
+    def test_yawn_notdetected_and_alert(self):
+        # Assume yawn started 1.8 seconds ago
+        yawn_start_time = time.time() - 1.8
+        # Above threshold
+        average_ratio_lips = 38
+        # Default variables
+        yawn_detected, yawn_alert = False, False
+        new_yawn_start_time, new_yawn_detected, new_yawn_alert = detect_yawn(
+            average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert, threshold=30, duration=2)
+        # Yawn should not be detected
+        self.assertIsNotNone(new_yawn_start_time)
+        self.assertFalse(new_yawn_detected)
+        self.assertFalse(new_yawn_alert)
+        
+        # Path to the audio alert
+        file2 = "consider_taking_a_rest.mp3"
+        # call the alert function
+        new_yawn_start_time, new_yawn_detected, new_yawn_alert = yawn_alert_func(
+            new_yawn_start_time, new_yawn_detected, new_yawn_alert, file2)
+        # Variables must stay same
+        self.assertIsNotNone(new_yawn_start_time)
         self.assertFalse(new_yawn_detected)
         self.assertFalse(new_yawn_alert)
 

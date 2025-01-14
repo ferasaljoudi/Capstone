@@ -32,6 +32,12 @@ lip_right = 291
 # This function will resize the image, convert it to RGB and normalize pixel values
 # These steps are required to match the model input we have
 def prepare_eye_for_model(eye_img):
+    # Validate input is a NumPy array
+    if not isinstance(eye_img, np.ndarray):
+        raise ValueError("Input must be a NumPy array representing an image.")
+    # Validate the image contains pixel data
+    if eye_img.size == 0:
+        raise ValueError("Input image can not be empty.")
     eye_img = cv2.resize(eye_img, (48, 48))
     eye_img = cv2.cvtColor(eye_img, cv2.COLOR_BGR2RGB)
     eye_img = eye_img / 255.0
@@ -44,17 +50,27 @@ def prepare_eye_for_model(eye_img):
 # The result frame of this box is the area of the eye being processed with the model.
 # The margin value was determined through a few experiments.
 def get_box(landmarks, ids, width, height, margin=10):
+    # Ids should be a list of integers
+    if not all(isinstance(id, int) for id in ids):
+        raise ValueError("IDs must be a list of integers.")
+    
+    # Width and height should be positive numbers
+    if not isinstance(width, (int, float)) or width <= 0:
+        raise ValueError("Width must be a positive number.")
+    if not isinstance(height, (int, float)) or height <= 0:
+        raise ValueError("Height must be a positive number.")
     x_coords = [int(landmarks[id].x * width) for id in ids]
     y_coords = [int(landmarks[id].y * height) for id in ids]
     x_min, x_max = min(x_coords), max(x_coords)
     y_min, y_max = min(y_coords), max(y_coords)
     return x_min - margin, y_min - (margin * 2), x_max + margin, y_max + margin
 
-# Function to calculate the mouth aspect ratio
 def calculate_mouth_ratio(upper_lip, lower_lip, left_lip, right_lip):
     # Calculate vertical and horizontal distances
     vertical = np.linalg.norm(np.array(upper_lip) - np.array(lower_lip))
     horizontal = np.linalg.norm(np.array(left_lip) - np.array(right_lip))
+    if horizontal == 0:
+        raise ValueError("Horizontal distance can not be zero.")
     # Return mouth aspect ratio
     return (vertical / horizontal) * 100
 
@@ -74,6 +90,7 @@ def detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert, 
         yawn_start_time = None
         yawn_detected = False
         yawn_alert = False
+
     # Return the updated (yawn_start_time, yawn_detected, yawn_alert)
     return yawn_start_time, yawn_detected, yawn_alert
 
