@@ -68,7 +68,7 @@ function What() {
 
     return (
         <section className="what" ref={whatRef}>
-        <h1 style={{ fontSize: `${fontSize}px` }}>What</h1>
+        <h1 style={{ fontSize: `${fontSize}px` }}>What is IFS-DriverAlert</h1>
         <p className={`what-paragraph ${showParagraph ? "visible" : ""}`}>
             This what provides what are we doing.
         </p>
