@@ -8,6 +8,8 @@ function Solution() {
     const [showParagraph, setShowParagraph] = useState(false);
     // Start decreasing font size
     const [startDecreasing, setStartDecreasing] = useState(false);
+    // State for header visibility
+    const [headerVisible, setHeaderVisible] = useState(false);
     const solutionRef = useRef(null);
 
     // Scroll handler to adjust font size and show paragraph
@@ -15,63 +17,75 @@ function Solution() {
         if (startDecreasing && solutionRef.current) {
             const element = solutionRef.current;
             const bounding = element.getBoundingClientRect();
-            const elementTop = bounding.top; // Distance from top of viewport to element
+            const elementTop = bounding.top;
 
             // Higher value slows down the decrease
             const scrollFactor = 10;
             const newFontSize = Math.max(
-            40,
-            Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
+                40,
+                Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
             );
 
             setFontSize(newFontSize);
 
             // Show paragraph when font size hits 40
             if (newFontSize <= 40) {
-            setShowParagraph(true);
+                setShowParagraph(true);
             } else {
-            setShowParagraph(false);
+                setShowParagraph(false);
             }
         }
     }, [startDecreasing]);
 
-    // Intersection observer to detect when the section is in view
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-            if (entry.isIntersecting) {
-                setStartDecreasing(true); // Start decreasing font size when visible
-            }
-            },
-            { threshold: 0.1 } // Trigger when at least 10% of the section is visible
-        );
+        const handleScrollVisibility = () => {
+            if (solutionRef.current) {
+                const bounding = solutionRef.current.getBoundingClientRect();
+                const sectionVisible = bounding.top < window.innerHeight && bounding.bottom > 0;
 
-        const currentRef = solutionRef.current; // Store ref in a variable to avoid stale closure
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-            observer.unobserve(currentRef);
+                setHeaderVisible(sectionVisible);
+                if (sectionVisible) {
+                    setStartDecreasing(true);
+                }
             }
         };
-    }, []);
 
-    // Scroll event listener
+        window.addEventListener("scroll", handleScrollVisibility);
+        return () => {
+            window.removeEventListener("scroll", handleScrollVisibility);
+        };
+    }, []);
+        
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
-        window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, [handleScroll]);
 
     return (
         <section className="solution" ref={solutionRef}>
-        <h1 style={{ fontSize: `${fontSize}px` }}>Solution</h1>
-        <p className={`solution-paragraph ${showParagraph ? "visible" : ""}`}>
-            This section provides the solution to the problem.
-        </p>
+            <h1 className={`solution_header ${headerVisible ? "slide-in" : "slide-out"}`} style={{ fontSize: `${fontSize}px` }}>
+            Our Solution
+            </h1>
+            <div className={`solution_content ${showParagraph ? "visible" : ""}`}>
+                <div className="solution_content_text">
+                    <p>
+                    The IFS DriverAlert delivers a cost-effective, offline, and user-friendly solution for drowsiness detection. It enhances road safety by reliably detecting eye closures and promptly alerting drivers, making it a practical and accessible alternative for any vehicle. This system ensures privacy by processing data locally without storing any images or video.
+                    </p>
+                </div>
+                <div className="video_container">
+                    <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/bguCP2fWp50"
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                </div>
+            </div>
         </section>
     );
 }

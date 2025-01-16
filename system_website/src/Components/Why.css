@@ -1,27 +1,49 @@
 .why {
     padding: 20px;
-    background-color: #e6e5e5;
-    text-align: center;
+    background-color: #2b2b2b;
+    text-align: left;
     position: relative;
     height: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     overflow: hidden;
 }
 
-.why h1 {
-    transition: font-size 0.1s ease-in-out;
+.why_header {
+    color: rgb(230, 68, 68);
+    margin: 0;
+    padding: 10px 0;
+    transition: font-size 0.1s ease-in-out, transform 0.5s ease-in, opacity 0.5s ease-out;
+    opacity: 0;
+    transform: translateX(100%);
 }
 
-.why-paragraph {
+.why_header.slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.why_header.slide-out {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.why_content {
+    color: white;
     opacity: 0;
     transform: translateX(100%);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    width: 70%;
+    font-size: 24px;
 }
 
-.why-paragraph.visible {
+.why_content.visible {
     opacity: 1;
     transform: translateX(0);
 }

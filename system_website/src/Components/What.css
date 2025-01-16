@@ -1,27 +1,37 @@
 .what {
     padding: 20px;
-    background-color: #e6e5e5;
-    text-align: center;
+    background-color: #222222;
+    text-align: left;
     position: relative;
     height: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     overflow: hidden;
 }
 
-.what h1 {
+.what_header {
+    color: rgb(230, 68, 68);
     transition: font-size 0.1s ease-in-out;
+    margin: 0;
+    padding: 10px 0;
 }
 
-.what-paragraph {
+.what_content {
+    color: white;
     opacity: 0;
     transform: translateX(100%);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    width: 70%;
+    font-size: 24px;
 }
 
-.what-paragraph.visible {
+.what_content.visible {
     opacity: 1;
     transform: translateX(0);
 }
