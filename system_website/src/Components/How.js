@@ -8,6 +8,8 @@ function How() {
     const [showParagraph, setShowParagraph] = useState(false);
     // Start decreasing font size
     const [startDecreasing, setStartDecreasing] = useState(false);
+    // State for header visibility
+    const [headerVisible, setHeaderVisible] = useState(false);
     const howRef = useRef(null);
 
     // Scroll handler to adjust font size and show paragraph
@@ -15,7 +17,7 @@ function How() {
         if (startDecreasing && howRef.current) {
             const element = howRef.current;
             const bounding = element.getBoundingClientRect();
-            const elementTop = bounding.top; // Distance from top of viewport to element
+            const elementTop = bounding.top;
 
             // Higher value slows down the decrease
             const scrollFactor = 10;
@@ -35,40 +37,37 @@ function How() {
         }
     }, [startDecreasing]);
 
-    // Intersection observer to detect when the section is in view
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-            if (entry.isIntersecting) {
-                setStartDecreasing(true); // Start decreasing font size when visible
-            }
-            },
-            { threshold: 0.1 } // Trigger when at least 10% of the section is visible
-        );
+        const handleScrollVisibility = () => {
+            if (howRef.current) {
+                const bounding = howRef.current.getBoundingClientRect();
+                const sectionVisible = bounding.top < window.innerHeight && bounding.bottom > 0;
 
-        const currentRef = howRef.current; // Store ref in a variable to avoid stale closure
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-            observer.unobserve(currentRef);
+                setHeaderVisible(sectionVisible);
+                if (sectionVisible) {
+                    setStartDecreasing(true);
+                }
             }
         };
-    }, []);
 
-    // Scroll event listener
+        window.addEventListener("scroll", handleScrollVisibility);
+        return () => {
+            window.removeEventListener("scroll", handleScrollVisibility);
+        };
+    }, []);
+    
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
-        window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, [handleScroll]);
 
     return (
         <section className="how" ref={howRef}>
-            <h1 className="how_header" style={{ fontSize: `${fontSize}px` }}>Implementation Approach</h1>
+            <h1 className={`how_header ${headerVisible ? "slide-in" : "slide-out"}`} style={{ fontSize: `${fontSize}px` }}>
+                Implementation Approach
+            </h1>
             <div className={`how_content ${showParagraph ? "visible" : ""}`}>
                 <div className="how_content_text">
                     <p>

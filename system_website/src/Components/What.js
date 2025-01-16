@@ -15,7 +15,7 @@ function What() {
         if (startDecreasing && whatRef.current) {
             const element = whatRef.current;
             const bounding = element.getBoundingClientRect();
-            const elementTop = bounding.top; // Distance from top of viewport to element
+            const elementTop = bounding.top;
 
             // Higher value slows down the decrease
             const scrollFactor = 10;
@@ -35,18 +35,17 @@ function What() {
         }
     }, [startDecreasing]);
 
-    // Intersection observer to detect when the section is in view
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
             if (entry.isIntersecting) {
-                setStartDecreasing(true); // Start decreasing font size when visible
+                setStartDecreasing(true);
             }
             },
-            { threshold: 0.1 } // Trigger when at least 10% of the section is visible
+            { threshold: 0.1 }
         );
 
-        const currentRef = whatRef.current; // Store ref in a variable to avoid stale closure
+        const currentRef = whatRef.current;
         if (currentRef) {
             observer.observe(currentRef);
         }
@@ -58,7 +57,6 @@ function What() {
         };
     }, []);
 
-    // Scroll event listener
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {

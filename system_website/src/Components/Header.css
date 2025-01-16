@@ -25,12 +25,14 @@
 }
 
 .header_heading {
+    color: rgb(230, 68, 68);
     font-size: 50px;
     margin: 10px 0;
     animation: slideInTop 2.2s ease-in-out;
 }
 
 .header_subheading {
+    color: rgb(230, 68, 68);
     font-size: 40px;
     margin: 10px 0;
     animation: slideInTop 1.2s ease-in-out;
