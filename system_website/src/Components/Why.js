@@ -20,8 +20,8 @@ function Why() {
             // Higher value slows down the decrease
             const scrollFactor = 10;
             const newFontSize = Math.max(
-            40,
-            Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
+                40,
+                Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
             );
 
             setFontSize(newFontSize);
@@ -68,10 +68,15 @@ function Why() {
 
     return (
         <section className="why" ref={whyRef}>
-        <h1 style={{ fontSize: `${fontSize}px` }}>Why</h1>
-        <p className={`why-paragraph ${showParagraph ? "visible" : ""}`}>
-            This why section provides why are we doing it.
-        </p>
+            <h1 className="why_header" style={{ fontSize: `${fontSize}px` }}>Why the System Matters</h1>
+            <div className={`why_content ${showParagraph ? "visible" : ""}`}>
+                <p>
+                Drowsy driving significantly increases the risk of accidents, causing injuries and fatalities. Current solutions are expensive and integrated into high-end vehicles, making them inaccessible to many drivers. The IFS DriverAlert addresses this gap by providing an affordable, easy-to-install, and effective way to alert drivers when they show signs of drowsiness, thus improving road safety.
+                </p>
+                <p>
+                ...
+                </p>
+            </div>
         </section>
     );
 }

@@ -20,8 +20,8 @@ function What() {
             // Higher value slows down the decrease
             const scrollFactor = 10;
             const newFontSize = Math.max(
-            40,
-            Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
+                40,
+                Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
             );
 
             setFontSize(newFontSize);
@@ -68,10 +68,15 @@ function What() {
 
     return (
         <section className="what" ref={whatRef}>
-        <h1 style={{ fontSize: `${fontSize}px` }}>What is IFS-DriverAlert</h1>
-        <p className={`what-paragraph ${showParagraph ? "visible" : ""}`}>
-            This what provides what are we doing.
-        </p>
+            <h1 className="what_header" style={{ fontSize: `${fontSize}px` }}>What is IFS-DriverAlert</h1>
+            <div className={`what_content ${showParagraph ? "visible" : ""}`}>
+                <p>
+                The IFS DriverAlert System is a standalone device that uses a Raspberry Pi 5, a camera, and a speaker to detect driver drowsiness. It monitors the driver’s eyes and mouth to detect closed eyes or yawning in real-time. The system operates offline, processes data locally, and is compact enough to be installed in any vehicle.
+                </p>
+                <p>
+                ...
+                </p>
+            </div>
         </section>
     );
 }

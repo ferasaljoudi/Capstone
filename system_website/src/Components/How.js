@@ -20,8 +20,8 @@ function How() {
             // Higher value slows down the decrease
             const scrollFactor = 10;
             const newFontSize = Math.max(
-            40,
-            Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
+                40,
+                Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
             );
 
             setFontSize(newFontSize);
@@ -68,10 +68,22 @@ function How() {
 
     return (
         <section className="how" ref={howRef}>
-        <h1 style={{ fontSize: `${fontSize}px` }}>How</h1>
-        <p className={`how-paragraph ${showParagraph ? "visible" : ""}`}>
-            This how section provides how are we doing it.
-        </p>
+            <h1 className="how_header" style={{ fontSize: `${fontSize}px` }}>Implementation Approach</h1>
+            <div className={`how_content ${showParagraph ? "visible" : ""}`}>
+                <div className="how_content_text">
+                    <p>
+                    The system captures real-time video of the driver's face using a camera and processes it with OpenCV and MediaPipe to monitor the driver's eyes and mouth. If closed eyes or yawning is detected, an audible alert is triggered through a speaker to alert the driver. The system is powered via the vehicle’s 12V supply, uses a step-down converter for the Raspberry Pi, and runs Python-based software optimized for the Raspberry Pi 5's resources.
+                    </p>
+                    <p>
+                    The system includes an audio reminder that plays every 10 minutes when the detection system is disabled. This feature ensures the driver is consistently reminded to activate the drowsiness detection system, enhancing overall safety.
+                    </p>
+                </div>
+                <div className="how_content_box">
+                    <div className="overlay camera-overlay"></div>
+                    <div className="overlay cooler-overlay"></div>
+                    <div className="overlay speaker-overlay"></div>
+                </div>
+            </div>
         </section>
     );
 }

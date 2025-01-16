@@ -5,12 +5,12 @@ function Solution() {
     // Initial font size
     const [fontSize, setFontSize] = useState(80);
     // Control paragraph visibility
-    const [showParagraph, setShowParagraph] = useState(false);
+    const [ssolutionParagraph, setSsolutionParagraph] = useState(false);
     // Start decreasing font size
     const [startDecreasing, setStartDecreasing] = useState(false);
     const solutionRef = useRef(null);
 
-    // Scroll handler to adjust font size and show paragraph
+    // Scroll handler to adjust font size and ssolution paragraph
     const handleScroll = useCallback(() => {
         if (startDecreasing && solutionRef.current) {
             const element = solutionRef.current;
@@ -20,17 +20,17 @@ function Solution() {
             // Higher value slows down the decrease
             const scrollFactor = 10;
             const newFontSize = Math.max(
-            40,
-            Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
+                40,
+                Math.min(80, 80 - (window.innerHeight - elementTop) / scrollFactor)
             );
 
             setFontSize(newFontSize);
 
-            // Show paragraph when font size hits 40
+            // Ssolution paragraph when font size hits 40
             if (newFontSize <= 40) {
-            setShowParagraph(true);
+            setSsolutionParagraph(true);
             } else {
-            setShowParagraph(false);
+            setSsolutionParagraph(false);
             }
         }
     }, [startDecreasing]);
@@ -68,10 +68,17 @@ function Solution() {
 
     return (
         <section className="solution" ref={solutionRef}>
-        <h1 style={{ fontSize: `${fontSize}px` }}>Solution</h1>
-        <p className={`solution-paragraph ${showParagraph ? "visible" : ""}`}>
-            This section provides the solution to the problem.
-        </p>
+            <h1 className="solution_header" style={{ fontSize: `${fontSize}px` }}>Our Solution</h1>
+            <div className={`solution_content ${ssolutionParagraph ? "visible" : ""}`}>
+                <div className="solution_content_text">
+                    <p>
+                    The IFS DriverAlert delivers a cost-effective, offline, and user-friendly solution for drowsiness detection. It enhances road safety by reliably detecting eye closures and promptly alerting drivers, making it a practical and accessible alternative for any vehicle. This system ensures privacy by processing data locally without storing any images or video.
+                    </p>
+                    <p>
+                    ...
+                    </p>
+                </div>
+            </div>
         </section>
     );
 }
