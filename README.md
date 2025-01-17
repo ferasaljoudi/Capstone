@@ -56,12 +56,36 @@
 <table>
   <tr>
     <td>
+      <a href="https://www.w3schools.com/js/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Left/javaScript.svg" alt="JavaScript"></a>
+      <br>
+    </td>
+    <td>
       <a href="https://www.w3schools.com/python/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Middle/python.svg" alt="Python"></a>
+      <br>
+    </td>
+    <td>
+      <a href="https://www.w3schools.com/css/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/Languages/Right/css.svg" alt="CSS"></a>
       <br>
     </td>
   </tr>
 </table>
+</div>
 
+<h2 align = "center">🌐 Web Development</h2>
+
+<div align = "center">
+<table>
+  <tr>
+    <td>
+      <a href="https://react.dev/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/WebDevelopment/Left/react.svg" alt="React"></a>
+      <br>
+    </td>
+    <td>
+      <a href="https://www.npmjs.com/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/WebDevelopment/Right/npm.svg" alt="NPM"></a>
+      <br>
+    </td>
+  </tr>
+</table>
 </div>
 
 <h2 align = "center">💻 Tools and Platforms</h2>
@@ -69,6 +93,10 @@
 <div align = "center">
 <table>
   <tr>
+    <td>
+      <a href="https://code.visualstudio.com/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Left/vsCode.svg" alt="VS CODE"></a>
+      <br>
+    </td>
     <td>
       <a href="https://www.jetbrains.com/pycharm/"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/Badges/ToolsAndPlatforms/Left/pyCharm.svg" alt="PyCharm"></a>
       <br>
