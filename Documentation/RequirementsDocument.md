@@ -271,8 +271,14 @@ The image above shows the variations within each class, highlighting different e
 # Analysis Models
 
 - Hardware Diagrams:
-    - [Block Diagram](HardwareDiagrams/IFS_BlockDiagram.pdf)
-    - [Schematic Diagram](HardwareDiagrams/IFS_SchematicDiagram.pdf)
+    - [Block Diagram](../Diagrams/HardwareDiagrams/IFS_BlockDiagram.pdf)
+    - [Schematic Diagram](../Diagrams/HardwareDiagrams/IFS_SchematicDiagram.pdf)
 - Software Diagrams:
-    - [Activity Diagram](SoftwareDiagrams/IFS_ActivityDiagram.pdf)
-    - [Use Case Diagram](SoftwareDiagrams/IFS_UseCaseDiagram.pdf)
+    - Structural Diagrams:
+        - Class Diagram In progress...
+        - Deployment Diagram In progress...
+    - Behavioral Diagrams:
+        - [Activity Diagram](../Diagrams/SoftwareDiagrams/IFS_ActivityDiagram.pdf)
+        - [Use Case Diagram](../Diagrams/SoftwareDiagrams/IFS_UseCaseDiagram.pdf)
+        - Sequence Diagram In progress...
+    
