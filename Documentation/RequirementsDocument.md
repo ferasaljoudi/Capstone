@@ -276,9 +276,9 @@ The image above shows the variations within each class, highlighting different e
 - Software Diagrams:
     - Structural Diagrams:
         - [Class Diagram](../Diagrams/SoftwareDiagrams/IFS_ClassDiagram.pdf)
-        - Deployment Diagram In progress...
+        - [Deployment Diagram](../Diagrams/SoftwareDiagrams/IFS_DeploymentDiagram.pdf)
     - Behavioral Diagrams:
         - [Activity Diagram](../Diagrams/SoftwareDiagrams/IFS_ActivityDiagram.pdf)
         - [Use Case Diagram](../Diagrams/SoftwareDiagrams/IFS_UseCaseDiagram.pdf)
-        - Sequence Diagram In progress...
+        - [Sequence Diagram](../Diagrams/SoftwareDiagrams/IFS_SequenceDiagram.pdf)
     
