@@ -41,76 +41,69 @@ def calculate_mouth_ratio(upper_lip, lower_lip, left_lip, right_lip):
     # Return mouth aspect ratio
     return (vertical / horizontal) * 100
 
-# Function to check if yawn is detected
-def detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert, threshold=30, duration=2):
-    # Check the lip average stayed at (or more than) threshold for 2 seconds
-    if average_ratio_lips >= threshold:
-        if yawn_start_time is None:
-            # Initialize the timer to track for how long the mouth is open
-            yawn_start_time = time.time()
-        elif time.time() - yawn_start_time >= duration and not yawn_detected:
-            # If mouth stayed open for 2 seconds, yawn is detected
-            yawn_detected = True
-            yawn_alert = True
+# Function to calculate the face turn aspect ratio
+def calculate_face_turn_ratio(left_eyebrow, right_eyebrow, left_cheek, right_cheek):
+    # Calculate distances
+    eyebrows_width = right_eyebrow.x - left_eyebrow.x
+    face_width = right_cheek.x - left_cheek.x
+    if face_width == 0:
+        raise ValueError("Horizontal distance can not be zero.")
+    # Return aspect ratio
+    return (eyebrows_width / face_width) * 180
+
+# Function to check if signs are detected
+# This function will detect closed eyes, yawning or face turn
+def detect_signs(average_ratio, start_time, detected, alert, threshold, duration):
+    if threshold == 30:
+        # Check if the average stayed at (or MORE than) threshold
+        if average_ratio >= threshold:
+            if start_time is None:
+                # Initialize the timer
+                start_time = time.time()
+            elif time.time() - start_time >= duration and not detected:
+                detected = True
+                alert = True
+        else:
+            # Reset variables
+            start_time = None
+            detected = False
+            alert = False
     else:
-        # Reset variables if the ratio falls below the threshold
-        yawn_start_time = None
-        yawn_detected = False
-        yawn_alert = False
+        # Check if the average stayed at (or LESS than) threshold
+        if average_ratio <= threshold:
+            if start_time is None:
+                # Initialize the timer
+                start_time = time.time()
+            elif time.time() - start_time >= duration and not detected:
+                detected = True
+                alert = True
+        else:
+            # Reset variables
+            start_time = None
+            detected = False
+            alert = False
 
-    # Return the updated (yawn_start_time, yawn_detected, yawn_alert)
-    return yawn_start_time, yawn_detected, yawn_alert
+    # Return the updated variables
+    return start_time, detected, alert
 
-# Function to check if closed eyes are detected
-def detect_eye_closure(average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, threshold=24, duration=1):
-    # Check the eye closed based on if the average stayed at (or less than) threshold for 1 seconds
-    if average_ratio_eyes <= threshold:
-        if closed_start_time is None:
-            # Initialize the timer to track for how long the eyes are closed
-            closed_start_time = time.time()
-        elif time.time() - closed_start_time >= duration and not sleepy_detected:
-            sleepy_detected = True
-            closed_alert = True
-    else:
-        # If average went above the threshold, reset variables
-        closed_start_time = None
-        sleepy_detected = False
-        closed_alert = False
-
-    # Return the updated (closed_start_time, sleepy_detected, closed_alert)
-    return closed_start_time, sleepy_detected, closed_alert
-
-# Function to play yawn alert
-def yawn_alert_func(yawn_start_time, yawn_detected, yawn_alert, file2):
-    if yawn_detected and yawn_alert:
-        # Play the yawn_alert
-        os.system(f"mpg321 {file2}")
+# Function to play alert
+def alert_func(start_time, detected, alert, file):
+    if detected and alert:
+        # Play the alert
+        os.system(f"mpg321 {file}")
         # Reset variables
-        yawn_start_time = None
-        yawn_detected = False
-        yawn_alert = False
-    return yawn_start_time, yawn_detected, yawn_alert
-
-# Function to play closed alert
-def closed_alert_func(closed_start_time, sleepy_detected, closed_alert, file1):
-    if sleepy_detected and closed_alert:
-        # Play the closed_alert
-        os.system(f"mpg321 {file1}")
-        # Reset variables
-        closed_start_time = None
-        sleepy_detected = False
-        closed_alert = False
-    return closed_start_time, sleepy_detected, closed_alert
+        start_time = None
+        detected = False
+        alert = False
+    return start_time, detected, alert
 
 # Main logic
 def main():
-    # Lists to store eye and mouth ratios
+    # Lists to store eye, turn and mouth ratios
     list_of_left_eye_ratios = []
     list_of_right_eye_ratios = []
     list_of_lips_ratios = []
-
-    blink_counter = 0
-    counter = 0
+    last_yaw_measurements = []
 
     # Open the video
     cap = cv2.VideoCapture(0)
@@ -130,10 +123,13 @@ def main():
     # Default variables
     closed_start_time = None
     yawn_start_time = None
+    turn_start_time = None
     sleepy_detected = False
     yawn_detected = False
+    turn_detected = False
     closed_alert = False
     yawn_alert = False
+    turn_alert = False
 
     # Play system is on
     os.system(f"mpg321 {file3}")
@@ -191,21 +187,11 @@ def main():
                 # Calculate average eye ratio for both eyes
                 average_ratio_eyes = (ratio_average_left + ratio_average_right) / 2
 
-                # Check blink condition and increment the blink counter if average 25 or less
-                if average_ratio_eyes <= 25 and counter == 0:
-                    blink_counter += 1
-                    counter = 1
-                if counter != 0:
-                    counter += 1
-                    # Reset counter after a delay
-                    if counter > 10:
-                        counter = 0
+                # Call the detect_signs function to check if closed eyes are detected
+                closed_start_time, sleepy_detected, closed_alert = detect_signs(average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert, 24, 1)
 
-                # Call the detect_eye_closure function to check if closed eyes are detected
-                closed_start_time, sleepy_detected, closed_alert = detect_eye_closure(average_ratio_eyes, closed_start_time, sleepy_detected, closed_alert)
-
-                # Call the closed alert function
-                closed_start_time, sleepy_detected, closed_alert = closed_alert_func(closed_start_time, sleepy_detected, closed_alert, file1)
+                # Call the alert function
+                closed_start_time, sleepy_detected, closed_alert = alert_func(closed_start_time, sleepy_detected, closed_alert, file1)
 
                 # Process lips
                 upper_lip = face_landmarks.landmark[upper_lip_top]
@@ -228,11 +214,34 @@ def main():
                 # Average mouth aspect ratio
                 average_ratio_lips = sum(list_of_lips_ratios) / len(list_of_lips_ratios)
                 
-                # Call the detect_yawn function to check if yawn detected
-                yawn_start_time, yawn_detected, yawn_alert = detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert)
+                # Call the detect_signs function to check if yawn detected
+                yawn_start_time, yawn_detected, yawn_alert = detect_signs(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert, 30, 2)
 
-                # Call the yawn alert function
-                yawn_start_time, yawn_detected, yawn_alert = yawn_alert_func(yawn_start_time, yawn_detected, yawn_alert, file2)
+                # Call the alert function
+                yawn_start_time, yawn_detected, yawn_alert = alert_func(yawn_start_time, yawn_detected, yawn_alert, file2)
+                
+                # Process face turn
+                left_eyebrow = face_landmarks.landmark[105]
+                right_eyebrow = face_landmarks.landmark[334]
+                left_cheek = face_landmarks.landmark[234]
+                right_cheek = face_landmarks.landmark[454]
+
+                # Get the face turn aspect ratio
+                face_turn_ratio = calculate_face_turn_ratio(left_eyebrow, right_eyebrow, left_cheek, right_cheek)
+                last_yaw_measurements.append(face_turn_ratio)
+                
+                # Keeping only the last 3 measurements
+                if len(last_yaw_measurements) > 3:
+                    last_yaw_measurements.pop(0)
+                
+                # Calculate the average yaw
+                averaged_yaw = sum(last_yaw_measurements) / len(last_yaw_measurements)
+                
+                # Call the detect_signs function to check if face turn detected
+                turn_start_time, turn_detected, turn_alert = detect_signs(averaged_yaw, turn_start_time, turn_detected, turn_alert, 103, 3)
+
+                # Call the alert function
+                turn_start_time, turn_detected, turn_alert = alert_func(turn_start_time, turn_detected, turn_alert, file1)
 
         # Break if 'q' is pressed
         if cv2.waitKey(1) & 0xFF == ord('q'):
