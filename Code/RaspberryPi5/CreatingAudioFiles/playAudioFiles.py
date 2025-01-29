@@ -6,7 +6,9 @@ file_paths = [
     "consider_taking_a_rest.mp3",
     "detection_system_on.mp3",
     "detection_system_off.mp3",
-    "turn_on_reminder.mp3"
+    "turn_on_reminder.mp3",
+    "speed_over_20km.mp3",
+    "speed_below_20km.mp3"
 ]
 
 # Play each file
