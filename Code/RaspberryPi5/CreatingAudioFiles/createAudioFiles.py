@@ -8,7 +8,8 @@ texts = [
     "The detection system is off",
     "Do not forget to turn on the detection system",
     "Your speed is over 20 Km/h",
-    "Your speed is below 20 Km/h"
+    "Your speed is below 20 Km/h",
+    "Auto detection is off, consider turning it on manually"
 ]
 
 # File paths
@@ -19,7 +20,8 @@ file_paths = [
     "detection_system_off.mp3",
     "turn_on_reminder.mp3",
     "speed_over_20km.mp3",
-    "speed_below_20km.mp3"
+    "speed_below_20km.mp3",
+    "auto_off_reminder.mp3"
 ]
 
 # Create and save audio files
