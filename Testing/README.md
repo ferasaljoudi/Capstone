@@ -1,3 +1,3 @@
 # IFS DriverAlert Testing Documentation
 
-This directory has the testing documents...
+Note that the EquivalenceClassTesting.pdf was done before we add the looking away detection feature. So, we still need to update it.
