@@ -10,7 +10,7 @@
 endobj
 4 0 obj
 <<
-/Length 45573
+/Length 47779
 >>
 stream
 0.14 w
@@ -245,6 +245,36 @@ f
 541.44 261.28 542.08 260.64 542.88 260.64 c
 543.68 260.64 544.32 261.28 544.32 262.08 c
 f
+0.60 g
+573.12 200.88 m 573.12 201.68 572.48 202.32 571.68 202.32 c
+570.88 202.32 570.24 201.68 570.24 200.88 c
+570.24 200.08 570.88 199.44 571.68 199.44 c
+572.48 199.44 573.12 200.08 573.12 200.88 c
+f
+0.60 g
+666.72 247.68 m 666.72 248.48 666.08 249.12 665.28 249.12 c
+664.48 249.12 663.84 248.48 663.84 247.68 c
+663.84 246.88 664.48 246.24 665.28 246.24 c
+666.08 246.24 666.72 246.88 666.72 247.68 c
+f
+0.60 g
+339.12 298.08 m 339.12 298.88 338.48 299.52 337.68 299.52 c
+336.88 299.52 336.24 298.88 336.24 298.08 c
+336.24 297.28 336.88 296.64 337.68 296.64 c
+338.48 296.64 339.12 297.28 339.12 298.08 c
+f
+0.60 g
+490.32 215.28 m 490.32 216.08 489.68 216.72 488.88 216.72 c
+488.08 216.72 487.44 216.08 487.44 215.28 c
+487.44 214.48 488.08 213.84 488.88 213.84 c
+489.68 213.84 490.32 214.48 490.32 215.28 c
+f
+0.60 g
+339.12 269.28 m 339.12 270.08 338.48 270.72 337.68 270.72 c
+336.88 270.72 336.24 270.08 336.24 269.28 c
+336.24 268.48 336.88 267.84 337.68 267.84 c
+338.48 267.84 339.12 268.48 339.12 269.28 c
+f
 7.20 w
 BT
 /F1 6.545454545454544 Tf
@@ -357,22 +387,6 @@ ET
 [] 0 d
 571.68 229.68 72.00 -43.20 re
 S
-7.20 w
-BT
-/F1 6.545454545454544 Tf
-7.20 TL
-0.000 g
-551.02 194.99 Td
-(USB) Tj
-ET
-1 J
-1 j
-0.72 w
-0.53 0.00 0.00 RG
-[] 0 d
-557.280 200.880 m 
-571.680 200.880 l
-S
 q
 1 0 0 1 578.88 193.68 cm
 1.0000 0.0000 0.0000 1.0000 0 0 cm
@@ -388,22 +402,6 @@ BT
 571.68 231.77 Td
 (Camera) Tj
 ET
-7.20 w
-BT
-/F1 6.545454545454544 Tf
-7.20 TL
-0.000 g
-651.35 245.39 Td
-(USB) Tj
-ET
-1 J
-1 j
-0.72 w
-0.53 0.00 0.00 RG
-[] 0 d
-650.880 251.280 m 
-665.280 251.280 l
-S
 2 J
 0 j
 72 M
@@ -2008,7 +2006,7 @@ S
 503.280 200.880 l
 S
 503.280 200.880 m 
-557.280 200.880 l
+571.680 200.880 l
 S
 1 J
 1 j
@@ -2020,7 +2018,7 @@ S
 503.280 200.880 l
 S
 503.280 200.880 m 
-557.280 200.880 l
+571.680 200.880 l
 S
 1 J
 1 j
@@ -2028,14 +2026,17 @@ S
 0.00 0.53 0.00 RG
 0.00 g
 [] 0 d
-496.080 215.280 m 
+665.280 247.680 m 
+650.880 247.680 l
+S
+650.880 172.080 m 
+650.880 247.680 l
+S
+650.880 172.080 m 
 496.080 172.080 l
 S
 496.080 172.080 m 
-650.880 172.080 l
-S
-650.880 251.280 m 
-650.880 172.080 l
+496.080 215.280 l
 S
 1 J
 1 j
@@ -2043,14 +2044,17 @@ S
 0.00 0.53 0.00 RG
 0.00 g
 [] 0 d
-496.080 215.280 m 
+665.280 247.680 m 
+650.880 247.680 l
+S
+650.880 172.080 m 
+650.880 247.680 l
+S
+650.880 172.080 m 
 496.080 172.080 l
 S
 496.080 172.080 m 
-650.880 172.080 l
-S
-650.880 251.280 m 
-650.880 172.080 l
+496.080 215.280 l
 S
 7.20 w
 BT
@@ -2729,7 +2733,7 @@ BT
 10.80 TL
 0.000 0.000 0.502 rg
 643.68 129.04 Td
-(2024-12-30) Tj
+(2025-01-31) Tj
 ET
 7.20 w
 BT
@@ -3280,6 +3284,124 @@ BT
 0.000 g
 0.00 1.00 -1.00 0.00 501.97 200.88 Tm
 (USB) Tj
+ET
+1 J
+1 j
+0.72 w
+0.53 0.00 0.00 RG
+[] 0 d
+337.680 330.480 m 
+337.680 344.880 l
+S
+1 J
+1 j
+0.72 w
+0.63 0.00 0.00 RG
+0.00 g
+[] 0 d
+337.680 344.880 m 
+330.480 352.080 l
+344.880 352.080 l
+337.680 344.880 l
+337.680 352.080 l
+S
+7.20 w
+BT
+/F1 10.472727272727273 Tf
+11.52 TL
+0.000 0.000 1.000 rg
+348.48 346.97 Td
+(Antenna) Tj
+ET
+2 J
+0 j
+72 M
+0.72 w
+0.63 0.00 0.00 RG
+[] 0 d
+301.68 298.08 72.00 -28.80 re
+S
+1 J
+1 j
+0.72 w
+0.63 0.00 0.00 RG
+[] 0 d
+371.16 294.48 m 371.16 295.08 370.68 295.56 370.08 295.56 c
+369.48 295.56 369.00 295.08 369.00 294.48 c
+369.00 293.88 369.48 293.40 370.08 293.40 c
+370.68 293.40 371.16 293.88 371.16 294.48 c
+S
+7.20 w
+BT
+/F1 10.472727272727273 Tf
+11.52 TL
+0.000 0.000 1.000 rg
+308.88 282.17 Td
+(GPS module) Tj
+ET
+1 J
+1 j
+0.72 w
+0.00 0.53 0.00 RG
+0.00 g
+[] 0 d
+337.680 330.480 m 
+337.680 298.080 l
+S
+1 J
+1 j
+0.72 w
+0.00 0.53 0.00 RG
+0.00 g
+[] 0 d
+337.680 330.480 m 
+337.680 298.080 l
+S
+1 J
+1 j
+0.72 w
+0.00 0.53 0.00 RG
+0.00 g
+[] 0 d
+488.880 172.080 m 
+488.880 215.280 l
+S
+337.680 172.080 m 
+488.880 172.080 l
+S
+337.680 172.080 m 
+337.680 269.280 l
+S
+1 J
+1 j
+0.72 w
+0.00 0.53 0.00 RG
+0.00 g
+[] 0 d
+488.880 172.080 m 
+488.880 215.280 l
+S
+337.680 172.080 m 
+488.880 172.080 l
+S
+337.680 172.080 m 
+337.680 269.280 l
+S
+7.20 w
+BT
+/F1 6.545454545454544 Tf
+7.20 TL
+0.000 g
+0.00 1.00 -1.00 0.00 487.57 200.88 Tm
+(USB) Tj
+ET
+7.20 w
+BT
+/F1 6.545454545454544 Tf
+7.20 TL
+0.000 g
+0.00 1.00 -1.00 0.00 336.37 229.68 Tm
+(USB Micro-B) Tj
 ET
 Q
 endstream
@@ -5692,45 +5814,424 @@ endobj
 >>
 >>
 endobj
+42 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 43 0 R>> endobj
+43 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/118.08/5;this.zoom*=scale;var scrollX=475.2-(box[2]-box[0])/2/scale;var scrollY=453.59999999999997-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[473.76,512.64,476.64,394.56]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+44 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 45 0 R>> endobj
+45 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/154.07999999999998/5;this.zoom*=scale;var scrollX=467.99999999999994-(box[2]-box[0])/2/scale;var scrollY=435.6-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[459.35999999999996,512.64,476.64,358.56]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+46 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 47 0 R>> endobj
+47 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/254.88/5;this.zoom*=scale;var scrollX=460.79999999999995-(box[2]-box[0])/2/scale;var scrollY=385.2-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[444.96,512.64,476.64,257.76]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+48 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 49 0 R>> endobj
+49 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/71.28/5;this.zoom*=scale;var scrollX=534.6-(box[2]-box[0])/2/scale;var scrollY=205.2-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[498.96,213.84,570.24,196.56]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+50 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 51 0 R>> endobj
+51 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/172.07999999999998/5;this.zoom*=scale;var scrollX=577.8-(box[2]-box[0])/2/scale;var scrollY=206.99999999999997-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[491.76,246.23999999999998,663.8399999999999,167.76]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+52 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 53 0 R>> endobj
+53 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/114.47999999999999/5;this.zoom*=scale;var scrollX=365.4-(box[2]-box[0])/2/scale;var scrollY=414-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[308.15999999999997,415.44,422.64,412.56]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+54 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 55 0 R>> endobj
+55 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/56.879999999999995/5;this.zoom*=scale;var scrollX=253.79999999999998-(box[2]-box[0])/2/scale;var scrollY=356.40000000000003-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[225.35999999999999,379.44,282.24,333.36000000000007]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+56 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 57 0 R>> endobj
+57 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/118.07999999999991/5;this.zoom*=scale;var scrollX=250.2-(box[2]-box[0])/2/scale;var scrollY=392.40000000000003-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[218.16000000000003,451.44,282.24,333.36000000000007]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+58 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 59 0 R>> endobj
+59 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/107.28000000000007/5;this.zoom*=scale;var scrollX=189-(box[2]-box[0])/2/scale;var scrollY=239.40000000000003-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[156.96,293.0400000000001,221.04000000000002,185.76]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+60 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 61 0 R>> endobj
+61 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/114.47999999999999/5;this.zoom*=scale;var scrollX=192.60000000000002-(box[2]-box[0])/2/scale;var scrollY=235.79999999999995-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[156.96,293.03999999999996,228.24,178.55999999999997]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+62 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 63 0 R>> endobj
+63 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/35.28/5;this.zoom*=scale;var scrollX=334.8-(box[2]-box[0])/2/scale;var scrollY=311.4-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[333.36,329.03999999999996,336.24,293.76]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+64 0 obj
+<</D[0 /XYZ 0 599.76 0]/S/GoTo/Next 65 0 R>> endobj
+65 0 obj
+<</JS(this.zoomType=zoomtype.fitV;var box=this.getPageBox('Media',0);var scale=(box[2]-box[0])/154.07999999999998/5;this.zoom*=scale;var scrollX=410.4-(box[2]-box[0])/2/scale;var scrollY=217.79999999999998-(box[3]-box[1])/2/scale;this.scroll(scrollX,scrollY);this.removeField('arrow');var a = this.addField('arrow','text',0,[333.36,267.84,487.44,167.76]);a.textColor=color.blue;a.value="")/S/JavaScript>> endobj
+
 14 0 obj
 <<
+/Type /Outlines
+/First 15 0 R
+/Last 17 0 R
+/Count 27
+>> 
+endobj
+
+15 0 obj
+<<
+/Title (Pages)
+/Parent 14 0 R
+/Next 17 0 R
+/First 16 0 R
+/Last 16 0 R
+/Count 1
+>> 
+endobj
+
+17 0 obj
+<<
+/Title (Net)
+/Parent 14 0 R
+/Prev 15 0 R
+/First 18 0 R
+/Last 40 0 R
+/Count 24
+>> 
+endobj
+
+16 0 obj
+<<
+/Title (SCH_Schematic1 1-P1)
+/Parent 15 0 R
+/Dest [3 0 R /XYZ 0 599.76 0]
+>> 
+endobj
+
+18 0 obj
+<<
+/Title ($1N1077)
+/Parent 17 0 R
+/Next 20 0 R
+/First 19 0 R
+/Last 19 0 R
+/Count 1
+>> 
+endobj
+
+20 0 obj
+<<
+/Title ($1N1081)
+/Parent 17 0 R
+/Prev 18 0 R
+/Next 22 0 R
+/First 21 0 R
+/Last 21 0 R
+/Count 1
+>> 
+endobj
+
+22 0 obj
+<<
+/Title ($1N1097)
+/Parent 17 0 R
+/Prev 20 0 R
+/Next 24 0 R
+/First 23 0 R
+/Last 23 0 R
+/Count 1
+>> 
+endobj
+
+24 0 obj
+<<
+/Title ($1N1246)
+/Parent 17 0 R
+/Prev 22 0 R
+/Next 26 0 R
+/First 25 0 R
+/Last 25 0 R
+/Count 1
+>> 
+endobj
+
+26 0 obj
+<<
+/Title ($1N1251)
+/Parent 17 0 R
+/Prev 24 0 R
+/Next 28 0 R
+/First 27 0 R
+/Last 27 0 R
+/Count 1
+>> 
+endobj
+
+28 0 obj
+<<
+/Title ($1N1316)
+/Parent 17 0 R
+/Prev 26 0 R
+/Next 30 0 R
+/First 29 0 R
+/Last 29 0 R
+/Count 1
+>> 
+endobj
+
+30 0 obj
+<<
+/Title ($1N2288)
+/Parent 17 0 R
+/Prev 28 0 R
+/Next 32 0 R
+/First 31 0 R
+/Last 31 0 R
+/Count 1
+>> 
+endobj
+
+32 0 obj
+<<
+/Title ($1N2294)
+/Parent 17 0 R
+/Prev 30 0 R
+/Next 34 0 R
+/First 33 0 R
+/Last 33 0 R
+/Count 1
+>> 
+endobj
+
+34 0 obj
+<<
+/Title ($1N2304)
+/Parent 17 0 R
+/Prev 32 0 R
+/Next 36 0 R
+/First 35 0 R
+/Last 35 0 R
+/Count 1
+>> 
+endobj
+
+36 0 obj
+<<
+/Title ($1N2309)
+/Parent 17 0 R
+/Prev 34 0 R
+/Next 38 0 R
+/First 37 0 R
+/Last 37 0 R
+/Count 1
+>> 
+endobj
+
+38 0 obj
+<<
+/Title ($1N3614)
+/Parent 17 0 R
+/Prev 36 0 R
+/Next 40 0 R
+/First 39 0 R
+/Last 39 0 R
+/Count 1
+>> 
+endobj
+
+40 0 obj
+<<
+/Title ($1N3618)
+/Parent 17 0 R
+/Prev 38 0 R
+/First 41 0 R
+/Last 41 0 R
+/Count 1
+>> 
+endobj
+
+19 0 obj
+<<
+/Title ($1N1077)
+/Parent 18 0 R
+/A 42 0 R
+>> 
+endobj
+
+21 0 obj
+<<
+/Title ($1N1081)
+/Parent 20 0 R
+/A 44 0 R
+>> 
+endobj
+
+23 0 obj
+<<
+/Title ($1N1097)
+/Parent 22 0 R
+/A 46 0 R
+>> 
+endobj
+
+25 0 obj
+<<
+/Title ($1N1246)
+/Parent 24 0 R
+/A 48 0 R
+>> 
+endobj
+
+27 0 obj
+<<
+/Title ($1N1251)
+/Parent 26 0 R
+/A 50 0 R
+>> 
+endobj
+
+29 0 obj
+<<
+/Title ($1N1316)
+/Parent 28 0 R
+/A 52 0 R
+>> 
+endobj
+
+31 0 obj
+<<
+/Title ($1N2288)
+/Parent 30 0 R
+/A 54 0 R
+>> 
+endobj
+
+33 0 obj
+<<
+/Title ($1N2294)
+/Parent 32 0 R
+/A 56 0 R
+>> 
+endobj
+
+35 0 obj
+<<
+/Title ($1N2304)
+/Parent 34 0 R
+/A 58 0 R
+>> 
+endobj
+
+37 0 obj
+<<
+/Title ($1N2309)
+/Parent 36 0 R
+/A 60 0 R
+>> 
+endobj
+
+39 0 obj
+<<
+/Title ($1N3614)
+/Parent 38 0 R
+/A 62 0 R
+>> 
+endobj
+
+41 0 obj
+<<
+/Title ($1N3618)
+/Parent 40 0 R
+/A 64 0 R
+>> 
+endobj
+
+66 0 obj
+<<
 /Producer (jsPDF 0.0.0)
-/CreationDate (D:20241230111219-06'00')
+/CreationDate (D:20250131225519-06'00')
 >>
 endobj
-15 0 obj
+67 0 obj
 <<
 /Type /Catalog
 /Pages 1 0 R
 /OpenAction [3 0 R /FitH null]
 /PageLayout /OneColumn
+/Outlines 14 0 R
 >>
 endobj
 xref
-0 16
+0 68
 0000000000 65535 f 
-0000045750 00000 n 
-0000660215 00000 n 
+0000047956 00000 n 
+0000662421 00000 n 
 0000000015 00000 n 
 0000000124 00000 n 
-0000045807 00000 n 
-0000045976 00000 n 
-0000047020 00000 n 
-0000047185 00000 n 
-0000047364 00000 n 
-0000047480 00000 n 
-0000420514 00000 n 
-0000423258 00000 n 
-0000658443 00000 n 
-0000660351 00000 n 
-0000660437 00000 n 
+0000048013 00000 n 
+0000048182 00000 n 
+0000049226 00000 n 
+0000049391 00000 n 
+0000049570 00000 n 
+0000049686 00000 n 
+0000422720 00000 n 
+0000425464 00000 n 
+0000660649 00000 n 
+0000668429 00000 n 
+0000668506 00000 n 
+0000668711 00000 n 
+0000668609 00000 n 
+0000668809 00000 n 
+0000670199 00000 n 
+0000668914 00000 n 
+0000670265 00000 n 
+0000669032 00000 n 
+0000670331 00000 n 
+0000669150 00000 n 
+0000670397 00000 n 
+0000669268 00000 n 
+0000670463 00000 n 
+0000669386 00000 n 
+0000670529 00000 n 
+0000669504 00000 n 
+0000670595 00000 n 
+0000669622 00000 n 
+0000670661 00000 n 
+0000669740 00000 n 
+0000670727 00000 n 
+0000669858 00000 n 
+0000670793 00000 n 
+0000669976 00000 n 
+0000670859 00000 n 
+0000670094 00000 n 
+0000670925 00000 n 
+0000662557 00000 n 
+0000662618 00000 n 
+0000663027 00000 n 
+0000663088 00000 n 
+0000663521 00000 n 
+0000663582 00000 n 
+0000663991 00000 n 
+0000664052 00000 n 
+0000664447 00000 n 
+0000664508 00000 n 
+0000664952 00000 n 
+0000665013 00000 n 
+0000665431 00000 n 
+0000665492 00000 n 
+0000665950 00000 n 
+0000666011 00000 n 
+0000666456 00000 n 
+0000666517 00000 n 
+0000666959 00000 n 
+0000667020 00000 n 
+0000667478 00000 n 
+0000667539 00000 n 
+0000667946 00000 n 
+0000668007 00000 n 
+0000670991 00000 n 
+0000671077 00000 n 
 trailer
 <<
-/Size 16
-/Root 15 0 R
-/Info 14 0 R
-/ID [ <888FC56A32CFE38DA32475719EFE7A0E> <888FC56A32CFE38DA32475719EFE7A0E> ]
+/Size 68
+/Root 67 0 R
+/Info 66 0 R
+/ID [ <D46EB9C897CB23E14CF0D63673BEBEE0> <D46EB9C897CB23E14CF0D63673BEBEE0> ]
 >>
 startxref
-660541
+671198
 %%EOF
