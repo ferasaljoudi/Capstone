@@ -68,3 +68,26 @@ python eye_detection_tflite.py
 
 # To deactivate the environment
 deactivate
+
+# Below is the steps for setting up the GPS module and testing it
+
+# Open the Raspberry Pi configuration tool
+sudo raspi-config
+
+# Navigate to Interfacing Options
+# Select Serial Port
+# Enable the serial port hardware
+# Exit and reboot
+sudo reboot
+
+# Find the port which the GPS connected to
+dmesg | grep tty # For our system it was ttyACM0
+
+# Read GPS data to check if the module is outputting something
+cat /dev/ttyACM0
+
+# Test getting the location
+head -n 20 /dev/ttyACM0 | grep GPGGA
+
+# Test getting the speed
+head -n 20 /dev/ttyACM0 | grep GPVTG
