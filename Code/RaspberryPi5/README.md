@@ -8,7 +8,7 @@ Below is a description of the contents in this directory, outlining the setup an
 
 ### `setup.sh`
 
-- This script sets up the Raspberry Pi environment, including system updates, audio configuration, and testing peripherals like the speaker and camera.
+- This script sets up the Raspberry Pi environment, including system updates, audio configuration, and testing peripherals like the speaker, camera and GPS module.
 - It ensures the system is updated, cleaned, and rebooted for optimal performance.
 - Prepares a Python environment with all dependencies and tools for Python development, including OpenCV, MediaPipe, TensorFlow, and gTTS, within a virtual environment.
 
@@ -30,6 +30,11 @@ Below is a description of the contents in this directory, outlining the setup an
 - The `switchTask.service` file ensures the `switchTask.py` script starts automatically at boot and listens for the switch state.
 - The `.lgpio` directory is set up to support GPIO event notifications required by the `lgpio` library, with proper ownership for seamless operation.
 - These configurations automate the system's response to the switch state, making the setup reliable and user-friendly.
+
+### `gps_test.py`
+
+- This file was made to check if the GPS module is detecting the car speed.
+- This file will play audio files based on the car speed.
 
 ### `eye_detection_tflite.py` And `tflite_visual.py`
 
