@@ -76,8 +76,8 @@ try:
                 except ValueError:
                     pass
         else:
-            # Stop the script if it's running
-            if process is not None:
+            # Stop the script if it's running, switch is off, and no speed data
+            if process is not None and (gps_port is None or not line.startswith('$GPVTG')):
                 os.killpg(os.getpgid(process.pid), signal.SIGTERM)
                 process = None
                 # Play system is off
