@@ -9,10 +9,8 @@ texts = [
     "Eyes on the road!",
     "You’re looking away! Please focus on driving",
     "The detection system is on",
-    "The detection system is off",
+    "The detection system is in auto mode",
     "Do not forget to turn on the detection system",
-    "Your speed is over 20 Km/h",
-    "Your speed is below 20 Km/h",
     "Auto detection is off, consider turning it on manually"
 ]
 
@@ -25,10 +23,8 @@ file_paths = [
     "Eyes_on_the_road.mp3",
     "You_looking_away_Please_focus_on_driving.mp3",
     "detection_system_on.mp3",
-    "detection_system_off.mp3",
+    "detection_system_in_auto_mode.mp3",
     "turn_on_reminder.mp3",
-    "speed_over_20km.mp3",
-    "speed_below_20km.mp3",
     "auto_off_reminder.mp3"
 ]
 
