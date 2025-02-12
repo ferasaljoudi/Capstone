@@ -9,10 +9,8 @@ file_paths = [
     "Eyes_on_the_road.mp3",
     "You_looking_away_Please_focus_on_driving.mp3",
     "detection_system_on.mp3",
-    "detection_system_off.mp3",
+    "detection_system_in_auto_mode.mp3",
     "turn_on_reminder.mp3",
-    "speed_over_20km.mp3",
-    "speed_below_20km.mp3",
     "auto_off_reminder.mp3"
 ]
 
@@ -24,3 +22,4 @@ for file_path in file_paths:
     # os.system(f"mpg321 -g 40 {file_path}")
     # os.system(f"mpg321 -g 70 {file_path}")
     print(f"Played: {file_path}")
+    
