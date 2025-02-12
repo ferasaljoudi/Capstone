@@ -80,7 +80,7 @@ def calculate_face_turn_ratio(left_eyebrow, right_eyebrow, left_cheek, right_che
     eyebrows_width = right_eyebrow.x - left_eyebrow.x
     face_width = right_cheek.x - left_cheek.x
     if face_width == 0:
-        raise ValueError("Horizontal distance can not be zero.")
+        raise ValueError("Face width distance can not be zero.")
     # Return aspect ratio
     return (eyebrows_width / face_width) * 180
 
@@ -143,15 +143,31 @@ def detect_eye_closure(eye_status, closed_start_time, sleepy_detected, closed_al
     return closed_start_time, sleepy_detected, closed_alert
 
 # Function to play alert
-def alert_func(start_time, detected, alert, file):
+def alert_func(start_time, detected, alert, file1, file2, alert_count, alert_count_time):
+    current_time = time.time()
     if detected and alert:
-        # Play the alert
-        os.system(f"mpg321 {file}")
+        if alert_count == 0:
+			# Start timing
+            alert_count_time = current_time
+            os.system(f"mpg321 -g 40 {file1}")
+        elif alert_count == 1 and (current_time - alert_count_time) <= 300:
+            os.system(f"mpg321 -g 70 {file1}")
+        elif alert_count == 2 and (current_time - alert_count_time) <= 300:
+            os.system(f"mpg321 {file2}")
+        else:
+            # Reset alert count if more than 5 minutes passed
+            alert_count = 0
+            alert_count_time = current_time
+            os.system(f"mpg321 -g 40 {file1}")
+        # Increment alert count
+        alert_count += 1
         # Reset variables
         start_time = None
         detected = False
         alert = False
-    return start_time, detected, alert
+
+    # Return the updated variables
+    return start_time, detected, alert, alert_count, alert_count_time
 
 # Main logic
 def main():
@@ -169,24 +185,22 @@ def main():
     print("Press 'q' to quit.")
 
     # Audio file paths
-    file1 = "focus_on_the_road.mp3"
-    file2 = "consider_taking_a_rest.mp3"
-    file3 = "detection_system_on.mp3"
-    file4 = "detection_system_off.mp3"
+    eyes_audio1 = "focus_on_the_road.mp3"
+    eyes_audio2 = "Closed_eyes_detected_Stay_focused.mp3"
+    yawn_audio1 = "consider_taking_a_break.mp3"
+    yawn_audio2 = "Yawning_detected_Take_a_rest_soon.mp3"
+    turn_audio1 = "Eyes_on_the_road.mp3"
+    turn_audio2 = "You_looking_away_Please_focus_on_driving.mp3"
 
     # Default variables
-    closed_start_time = None
-    yawn_start_time = None
-    turn_start_time = None
-    sleepy_detected = False
-    yawn_detected = False
-    turn_detected = False
-    closed_alert = False
-    yawn_alert = False
-    turn_alert = False
+    closed_start_time = yawn_start_time = turn_start_time = None
+    sleepy_detected = yawn_detected = turn_detected = False
+    closed_alert = yawn_alert = turn_alert = False
+    eye_alert_count = yawn_alert_count = turn_alert_count = 0
+    eye_alert_time = yawn_alert_time = turn_alert_time = None
 
     # Play system is on
-    os.system(f"mpg321 {file3}")
+    # os.system(f"mpg321 {file3}")
 
     while True:
         success, frame = cap.read()
@@ -252,7 +266,7 @@ def main():
                 closed_start_time, sleepy_detected, closed_alert = detect_eye_closure(eye_status, closed_start_time, sleepy_detected, closed_alert)
 
                 # Call the alert function
-                closed_start_time, sleepy_detected, closed_alert = alert_func(closed_start_time, sleepy_detected, closed_alert, file1)
+                closed_start_time, sleepy_detected, closed_alert, eye_alert_count, eye_alert_time = alert_func(closed_start_time, sleepy_detected, closed_alert, eyes_audio1, eyes_audio2, eye_alert_count, eye_alert_time)
                 
                 # Get frame dimensions for scaling landmarks
                 h, w, _ = frame.shape
@@ -282,8 +296,8 @@ def main():
                 yawn_start_time, yawn_detected, yawn_alert = detect_yawn(average_ratio_lips, yawn_start_time, yawn_detected, yawn_alert)
                 
                 # Call the alert function
-                yawn_start_time, yawn_detected, yawn_alert = alert_func(yawn_start_time, yawn_detected, yawn_alert, file2)
-                
+                yawn_start_time, yawn_detected, yawn_alert, yawn_alert_count, yawn_alert_time = alert_func(yawn_start_time, yawn_detected, yawn_alert, yawn_audio1, yawn_audio2, yawn_alert_count, yawn_alert_time)
+                                
                 # Process face turn
                 left_eyebrow = face_landmarks.landmark[105]
                 right_eyebrow = face_landmarks.landmark[334]
@@ -305,12 +319,13 @@ def main():
                 turn_start_time, turn_detected, turn_alert = detect_face_turn(averaged_yaw, turn_start_time, turn_detected, turn_alert)
 
                 # Call the alert function
-                turn_start_time, turn_detected, turn_alert = alert_func(turn_start_time, turn_detected, turn_alert, file1)
+                turn_start_time, turn_detected, turn_alert, turn_alert_count, turn_alert_time = alert_func(turn_start_time, turn_detected, turn_alert, turn_audio1, turn_audio2, turn_alert_count, turn_alert_time)
+
 
         # Break if 'q' is pressed
         if cv2.waitKey(1) & 0xFF == ord('q'):
             # Play system is off
-            os.system(f"mpg321 {file4}")
+            # os.system(f"mpg321 {file4}")
             break
 
     # Release the video capture
@@ -319,4 +334,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
