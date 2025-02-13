@@ -1,11 +1,14 @@
 import time
 import unittest
+from collections import namedtuple
 
 import numpy as np
-from eye_detection_tflite import (alert_func, calculate_mouth_ratio,
-                                  detect_eye_closure, detect_face_turn,
-                                  detect_yawn, get_box, prepare_eye_for_model)
+from eye_detection_tflite import (alert_func, calculate_face_turn_ratio,
+                                  calculate_mouth_ratio, detect_eye_closure,
+                                  detect_face_turn, detect_yawn, get_box,
+                                  prepare_eye_for_model)
 
+Landmark = namedtuple("Landmark", ["x", "y"])
 
 class TestDrowsinessDetection(unittest.TestCase):
 	def test_valid_prepare_image(self):
@@ -90,6 +93,29 @@ class TestDrowsinessDetection(unittest.TestCase):
 				calculate_mouth_ratio(upper_lip, lower_lip, left_lip, right_lip)
 		# Verify the error message
 		self.assertEqual(str(context.exception), "Horizontal distance can not be zero.")
+        
+	def test_valid_turn_ratio(self):
+		# Simulate valid face landmarks
+		left_eyebrow = Landmark(20, 40)
+		right_eyebrow = Landmark(30, 10)
+		left_cheek = Landmark(0, 25)
+		right_cheek = Landmark(40, 25)
+		# eyebrows_width / face_width * 180 = 45
+		expected_ratio = (10 / 40) * 180
+		result = calculate_face_turn_ratio(left_eyebrow, right_eyebrow, left_cheek, right_cheek)
+		self.assertAlmostEqual(result, expected_ratio, places=2)
+		
+	def test_nonvalid_turn_ratio(self):
+		# Simulate non valid face landmarks
+		left_eyebrow = Landmark(20, 40)
+		right_eyebrow = Landmark(30, 10)
+		left_cheek = Landmark(40, 25)
+		right_cheek = Landmark(40, 25)
+		# eyebrows_width / face_width * 180 = (10/0) x 180
+		with self.assertRaises(ValueError) as context:
+				calculate_face_turn_ratio(left_eyebrow, right_eyebrow, left_cheek, right_cheek)
+		# Verify the error message
+		self.assertEqual(str(context.exception), "Face width distance can not be zero.")
         
 	def test_no_yawn_detected_below_boundary1(self):
 		# Assume yawn started less than 2 seconds ago
@@ -247,7 +273,7 @@ class TestDrowsinessDetection(unittest.TestCase):
 		self.assertIsNotNone(closed_start_time)
 		self.assertTrue(sleepy_detected)
 		self.assertTrue(closed_alert)
-		# Path to the audio alert
+		# Paths to the audio alert
 		eyes_audio1 = "focus_on_the_road.mp3"
 		eyes_audio2 = "Closed_eyes_detected_Stay_focused.mp3"
 		eye_alert_count = 0
@@ -263,14 +289,12 @@ class TestDrowsinessDetection(unittest.TestCase):
 		self.assertFalse(closed_alert)
 		# Call the alert function and check variables for second time
 		closed_start_time = time.time() - 1.3
-		eye_status = "Closed"
 		sleepy_detected, closed_alert = True, True
 		closed_start_time, sleepy_detected, closed_alert, eye_alert_count, eye_alert_time = alert_func(
 			closed_start_time, sleepy_detected, closed_alert, eyes_audio1, eyes_audio2, eye_alert_count, eye_alert_time)
 		self.assertEqual(eye_alert_count, 2)
 		# Call the alert function and check variables for third time
 		closed_start_time = time.time() - 1.3
-		eye_status = "Closed"
 		sleepy_detected, closed_alert = True, True
 		closed_start_time, sleepy_detected, closed_alert, eye_alert_count, eye_alert_time = alert_func(
 			closed_start_time, sleepy_detected, closed_alert, eyes_audio1, eyes_audio2, eye_alert_count, eye_alert_time)
@@ -314,7 +338,7 @@ class TestDrowsinessDetection(unittest.TestCase):
 		yawn_detected, yawn_alert = True, True
 		yawn_start_time, yawn_detected, yawn_alert, yawn_alert_count, yawn_alert_time = alert_func(
 			yawn_start_time, yawn_detected, yawn_alert, yawn_audio1, yawn_audio2, yawn_alert_count, yawn_alert_time)
-		self.assertEqual(yawn_alert_count, 3)    
+		self.assertEqual(yawn_alert_count, 3)
 
 	def test_turn_detected_and_alert(self):
 		# Assume turn started 3.6 seconds ago

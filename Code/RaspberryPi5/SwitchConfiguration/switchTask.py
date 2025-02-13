@@ -25,13 +25,12 @@ process = None
 
 # Audio file paths
 file0 = "detection_system_on.mp3"
-file1 = "detection_system_off.mp3"
-file2 = "turn_on_reminder.mp3"
-file3 = "speed_over_20km.mp3"
-file4 = "speed_below_20km.mp3"
+file1 = "detection_system_in_auto_mode.mp3"
+file2 = "auto_off_reminder.mp3"
 
 # Timer for playing file2
 last_played = time.time()
+last_speed_check = time.time()
 
 try:
     while True:
@@ -60,7 +59,7 @@ try:
             if len(parts) > 7 and parts[7]:
                 try:
                     speed_kmh = float(parts[7])
-                    last_played = time.time()
+                    last_speed_check = time.time()
 
                     if speed_kmh > 20:
                         if process is None:
@@ -73,14 +72,15 @@ try:
                         if process is not None:
                             os.killpg(os.getpgid(process.pid), signal.SIGTERM)
                             process = None
+                            last_played = time.time()
                 except ValueError:
                     pass
-        else:
+        elif time.time() - last_speed_check > 3:
             # Stop the script if it's running, switch is off, and no speed data
-            if process is not None and (gps_port is None or not line.startswith('$GPVTG')):
+            if process is not None:
                 os.killpg(os.getpgid(process.pid), signal.SIGTERM)
                 process = None
-                # Play system is off
+                # Play system is in auto mode
                 os.system(f"mpg321 {file1}")
                 last_played = time.time()
             # Play a reminder every 10 minutes
