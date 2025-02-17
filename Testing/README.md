@@ -33,3 +33,13 @@ Below is a description of the testing documents in this directory:
 - This document shows the Usability Testing, which focus on how users interact with the system like powering it on/off, toggling the switch, receiving, and understanding drowsiness alerts.
 - It shows the users observations and corresponding actions for better usability.
 
+### `IFS_UserAcceptanceTesting.pdf`
+
+- This document shows the User Acceptance Testing, which ensure it meets functional and usability requirements.
+- The test matrix includes various scenarios such as blinking, closed eye detection, yawning detection, looking away, and auto/manual detection, with expected and actual results compared.
+
+### `TFlite_vs_MediaPipe.pdf`
+
+- This document compares the performance of two methods for eye detection, yawn detection and resources (CPU and memory usage).
+- Method 1 (TFLite + MediaPipe) and Method 2 (MediaPipe only).
+- Both methods achieve similar accuracy at close and average distances, with MediaPipe being more efficient overall.
