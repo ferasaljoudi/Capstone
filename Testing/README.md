@@ -28,3 +28,8 @@ Below is a description of the testing documents in this directory:
 - This document shows the Integration Testing, which make sure key components interact correctly to detect drowsiness indicators and trigger alerts.
 - It categorizes test functions conducted in [test_tflite.py](https://github.com/ferasaljoudi/Capstone/blob/main/Code/RaspberryPi5/test_tflite.py) and [test_mediapipe.py](https://github.com/ferasaljoudi/Capstone/blob/main/Code/RaspberryPi5/test_mediapipe.py).
 
+### `IFS_UsabilityTesting.pdf`
+
+- This document shows the Usability Testing, which focus on how users interact with the system like powering it on/off, toggling the switch, receiving, and understanding drowsiness alerts.
+- It shows the users observations and corresponding actions for better usability.
+
