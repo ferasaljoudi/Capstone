@@ -1,8 +1,4 @@
-<div align="center">
-
 # Raspberry Pi: Setup, Configuration, and Scripts
-
-</div>
 
 Below is a description of the contents in this directory, outlining the setup and configurations performed entirely on the Raspberry Pi:
 
