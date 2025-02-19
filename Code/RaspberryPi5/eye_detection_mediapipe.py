@@ -93,10 +93,10 @@ def alert_func(start_time, detected, alert, file1, file2, alert_count, alert_cou
         if alert_count == 0:
 			# Start timing
             alert_count_time = current_time
-            os.system(f"mpg321 -g 40 {file1}")
+            os.system(f"mpg321 -g 50 {file1}")
         elif alert_count == 1 and (current_time - alert_count_time) <= 300:
-            os.system(f"mpg321 -g 70 {file1}")
-        elif alert_count == 2 and (current_time - alert_count_time) <= 300:
+            os.system(f"mpg321 -g 75 {file1}")
+        elif (current_time - alert_count_time) <= 300:
             os.system(f"mpg321 {file2}")
         else:
             # Reset alert count if more than 5 minutes passed
