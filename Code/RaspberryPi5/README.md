@@ -36,14 +36,14 @@ Below is a description of the contents in this directory, outlining the setup an
 
 - The detection in these files are done as below:
   - TFlite model to detect the closed eyes.
-  - MediaPipe to detect the yawn.
+  - MediaPipe to detect the yawn and looking away (left or right).
 - These two files do the same detection and alert tasks in the same way.
 - The `tflite_visual.py` file include the extra visual display which was used to test and view the result in the development stage.
 - The `eye_detection_tflite.py` file is the final script ready to be used without a display.
 
 ### `eye_detection_mediapipe.py` And `mediapipe _visual.py`
 
-- The detection in these files are done using MediaPipe to detect both closed eyes and yawn.
+- The detection in these files are done using MediaPipe to detect closed eyes, yawn and looking away (left or right).
 - These two files do the same detection and alert tasks in the same way.
 - The `mediapipe _visual.py` file include the extra visual display which was used to test and view the result in the development stage.
 - The `eye_detection_mediapipe.py` file is the final script ready to be used without a display.
