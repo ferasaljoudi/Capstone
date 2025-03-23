@@ -69,10 +69,10 @@ function What() {
             <h1 className="what_header" style={{ fontSize: `${fontSize}px` }}>What is IFS-DriverAlert</h1>
             <div className={`what_content ${showParagraph ? "visible" : ""}`}>
                 <p>
-                The IFS DriverAlert System is a standalone device that uses a Raspberry Pi 5, a camera, and a speaker to detect driver drowsiness. It monitors the driver’s eyes and mouth to detect closed eyes or yawning in real-time. The system operates offline, processes data locally, and is compact enough to be installed in any vehicle.
+                IFS-DriverAlert is a safety system designed to monitor a driver's face in real time and detect signs of drowsiness or distraction, such as eye closure, yawning, and looking away. It uses a camera, a Raspberry Pi 5, and MediaPipe AI models to analyze facial features and trigger alerts through a speaker. The goal is to reduce accidents caused by fatigue and inattention, especially in regular vehicles that don't have built-in driver monitoring systems.
                 </p>
                 <p>
-                ...
+                The system has an Auto and a Manual modes. In Auto mode, the detection system activates only when the car speed is at least 20km/h, which is done using a NEO-6M GPS module to monitor the speed. This prevents unnecessary alerts when the car is stopped. In Manual mode, detection runs continuously regardless of speed, which is useful in cases like tunnels where GPS signals may be weak. An audio reminder also plays every 10 minutes if Auto mode is on but speed is not detected, recommending the driver to switch to Manual mode.
                 </p>
             </div>
         </section>

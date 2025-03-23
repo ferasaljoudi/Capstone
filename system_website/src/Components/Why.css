@@ -47,3 +47,13 @@
     opacity: 1;
     transform: translateX(0);
 }
+
+a {
+    color: rgb(0, 225, 255);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: pink;
+    text-decoration: underline;
+}
