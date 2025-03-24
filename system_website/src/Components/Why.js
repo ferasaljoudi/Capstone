@@ -76,7 +76,7 @@ function Why() {
                     In the United States, the <a href="https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6326a1.htm?s_cid=mm6326a1_w" title="Centers for Disease Control and Prevention" target="_blank" rel="noopener noreferrer">CDC</a> reports that up to 7,500 fatal crashes annually (about 25% of all fatal crashes) involve drowsy driving. Nearly 1 in 25 adults admitted to falling asleep while driving in the past month.
                 </p>
                 <p>
-                    These numbers show the urgent need for affordable, effective systems like IFS-DriverAlert to prevent such tragedies.
+                    These numbers show the urgent need for an affordable and effective drowsiness detection system. Although drowsiness detection systems are available in high-end and premium vehicles, they are often too expensive for most drivers. IFS-DriverAlert offers a low-cost, offline alternative that brings this life-saving technology to any standard vehicle.
                 </p>
             </div>
         </section>

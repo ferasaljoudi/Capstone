@@ -71,7 +71,7 @@ function Solution() {
             <div className={`solution_content ${showParagraph ? "visible" : ""}`}>
                 <div className="solution_content_text">
                     <p>
-                    The IFS DriverAlert delivers a cost-effective, offline, and user-friendly solution for drowsiness detection. It enhances road safety by reliably detecting eye closures and promptly alerting drivers, making it a practical and accessible alternative for any vehicle. This system ensures privacy by processing data locally without storing any images or video.
+                        IFS-DriverAlert provides an affordable, standalone, and offline drowsiness detection system that can be added to any standard vehicle. It uses AI-powered facial monitoring to detect signs of fatigue and responds with progressive audio alerts to help keep drivers safe. This system ensures privacy by processing data locally without storing any images or video.
                     </p>
                 </div>
                 <div className="video_container">
