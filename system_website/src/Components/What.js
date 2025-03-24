@@ -2,6 +2,16 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./What.css";
 
 function What() {
+    // Download handler to download the manual PDF
+    const handleDownload = () => {
+        const link = document.createElement('a');
+        link.href = '/IFS_UserManual.pdf';
+        link.download = 'IFS_UserManual.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     // Initial font size
     const [fontSize, setFontSize] = useState(80);
     // Control paragraph visibility
@@ -66,6 +76,7 @@ function What() {
 
     return (
         <section className="what" ref={whatRef}>
+            <button className="download-btn" onClick={handleDownload}> ⤓ Download User Manual</button>
             <h1 className="what_header" style={{ fontSize: `${fontSize}px` }}>What is IFS-DriverAlert</h1>
             <div className={`what_content ${showParagraph ? "visible" : ""}`}>
                 <p>

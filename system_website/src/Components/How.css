@@ -36,11 +36,10 @@
     transform: translateX(100%);
     transition: opacity 0.5s ease, transform 0.5s ease;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 30%;
-    margin-top: 20px;
-    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    width: 70%;
     font-size: 24px;
 }
 
@@ -49,51 +48,10 @@
     transform: translateX(0);
 }
 
-.how_content_text {
-    flex: 0 0 40%;
-    text-align: left;
-    line-height: 1.5;
+ul {
+    line-height: 2;
 }
 
-.how_content_box {
-    flex: 1;
-    position: relative;
-    background-image: url('../Assets/PI_5.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 400px;
-    max-width: 400px;
-    border: 1px solid #ffffff;
-    overflow: hidden;
-}
-
-.how_content_box .overlay {
-    position: absolute;
-    background-size: cover;
-    background-position: center;
-}
-
-.camera-overlay {
-    background-image: url('../Assets/Camera.jpg');
-    width: 25%;
-    height: 25%;
-    top: 80%;
-    left: 10%;
-}
-
-.cooler-overlay {
-    background-image: url('../Assets/Active_Cooler.jpg');
-    width: 35%;
-    height: 35%;
-    top: 69%;
-    left: 60%;
-}
-
-.speaker-overlay {
-    background-image: url('../Assets/Speaker.jpg');
-    width: 40%;
-    height: 20%;
-    top: 10%;
-    left: 5%;
-    position: absolute;
+li {
+    margin-bottom: 8px;
 }

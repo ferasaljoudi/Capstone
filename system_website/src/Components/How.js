@@ -30,9 +30,9 @@ function How() {
 
             // Show paragraph when font size hits 40
             if (newFontSize <= 40) {
-            setShowParagraph(true);
+                setShowParagraph(true);
             } else {
-            setShowParagraph(false);
+                setShowParagraph(false);
             }
         }
     }, [startDecreasing]);
@@ -55,7 +55,7 @@ function How() {
             window.removeEventListener("scroll", handleScrollVisibility);
         };
     }, []);
-    
+
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
@@ -69,19 +69,17 @@ function How() {
                 Implementation Approach
             </h1>
             <div className={`how_content ${showParagraph ? "visible" : ""}`}>
-                <div className="how_content_text">
-                    <p>
-                    The system captures real-time video of the driver's face using a camera and processes it with OpenCV and MediaPipe to monitor the driver's eyes and mouth. If closed eyes or yawning is detected, an audible alert is triggered through a speaker to alert the driver. The system is powered via the vehicle’s 12V supply, uses a step-down converter for the Raspberry Pi, and runs Python-based software optimized for the Raspberry Pi 5's resources.
-                    </p>
-                    <p>
-                    The system includes an audio reminder that plays every 10 minutes when the detection system is disabled. This feature ensures the driver is consistently reminded to activate the drowsiness detection system, enhancing overall safety.
-                    </p>
-                </div>
-                <div className="how_content_box">
-                    <div className="overlay camera-overlay"></div>
-                    <div className="overlay cooler-overlay"></div>
-                    <div className="overlay speaker-overlay"></div>
-                </div>
+            <ul>
+                <li>📷 A camera captures real-time video of the driver's face.</li>
+                <li>🧠 MediaPipe and OpenCV are used to detect eye closure, yawning, and looking away.</li>
+                <li>🔊 When signs of drowsiness or distraction are detected, a progressive audio alert is played through a speaker.</li>
+                <li>⚡ The system is powered by the car's 12V outlet using a step-down converter to provide 5V to the Raspberry Pi 5.</li>
+                <li>🛰️ A NEO-6M GPS module monitors vehicle speed to enable Auto mode.</li>
+                <li>🚗 In Auto mode, detection only runs when the car speed is at least 20km/h, reducing power and avoiding false alerts when parked.</li>
+                <li>🛑 In Manual (On) mode, detection runs continuously, useful in areas like tunnels where GPS may not work.</li>
+                <li>🔁 An audio reminder plays every 10 minutes if Auto mode is active but speed is not detected, prompting the driver to manually turn detection on.</li>
+                <li>🔐 The system operates entirely offline, with no data storage or transmission, ensuring privacy and low power usage.</li>
+            </ul>
             </div>
         </section>
     );
