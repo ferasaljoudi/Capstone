@@ -70,9 +70,14 @@ function Why() {
             </h1>
             <div className={`why_content ${showParagraph ? "visible" : ""}`}>
                 <p>
-                    Drowsy driving significantly increases the risk of accidents, causing injuries and fatalities. Current solutions are expensive and integrated into high-end vehicles, making them inaccessible to many drivers. The IFS DriverAlert addresses this gap by providing an affordable, easy-to-install, and effective way to alert drivers when they show signs of drowsiness, thus improving road safety.
+                    In Saskatchewan, Canada, driver fatigue causes over 145 injuries and 7 deaths every year on average, according to <a href="https://sgi.sk.ca/pro-driver/-/knowledge_base/pro-drivers/driver-condition" title="SGI" target="_blank" rel="noopener noreferrer">SGI</a>. Drowsy driving is treated as seriously as impaired driving due to its impact on reaction time and judgment.
                 </p>
-                <p>...</p>
+                <p>
+                    In the United States, the <a href="https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6326a1.htm?s_cid=mm6326a1_w" title="Centers for Disease Control and Prevention" target="_blank" rel="noopener noreferrer">CDC</a> reports that up to 7,500 fatal crashes annually (about 25% of all fatal crashes) involve drowsy driving. Nearly 1 in 25 adults admitted to falling asleep while driving in the past month.
+                </p>
+                <p>
+                    These numbers show the urgent need for an affordable and effective drowsiness detection system. Although drowsiness detection systems are available in high-end and premium vehicles, they are often too expensive for most drivers. IFS-DriverAlert offers a low-cost, offline alternative that brings this life-saving technology to any standard vehicle.
+                </p>
             </div>
         </section>
     );
