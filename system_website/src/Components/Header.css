@@ -40,10 +40,11 @@
 
 .header_text {
     width: 60%;
-    margin: 350px 0 0 0;
     font-size: 26px;
-    font-weight: 500;
+    margin-top: 80px;
+    width: 90%;
     text-align: center;
+    font-weight: 500;
 }
 
 @keyframes slideInTop {
@@ -54,5 +55,48 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 960px) {
+    .header_text {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 500px) {
+    .header_heading {
+        font-size: 40px;
+        margin: 10px 0;
+    }
+    
+    .header_subheading {
+        font-size: 30px;
+        margin: 10px 0;
+    }
+
+    .header_text {
+        margin-top: 30px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 430px) {
+    .header_heading {
+        font-size: 40px;
+        margin: 10px 0;
+    }
+    
+    .header_subheading {
+        font-size: 22px;
+        margin: 10px 0;
+    }
+
+    .header_text {
+        width: 80%;
+        margin-top: 30px;
+        font-size: 16px;
     }
 }

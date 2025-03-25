@@ -46,3 +46,32 @@
     margin-top: 20px;
     max-width: 300px;
 }
+
+@media (max-width: 350px){
+    .download-btn {
+        font-size: 18px;
+        padding: 12px 18px;
+        margin-top: 10px;
+    }
+
+    .what_content {
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: left;
+        width: 95%;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 450px){
+    .download-btn {
+        font-size: 20px;
+    }
+
+    .what_content {
+        width: 95%;
+        font-size: 17px;
+    }
+}
