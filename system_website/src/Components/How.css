@@ -55,3 +55,35 @@ ul {
 li {
     margin-bottom: 8px;
 }
+
+@media (max-width: 350px){
+    .how_content {
+        width: 100%;
+        font-size: 17px;
+        margin-left: -18px;
+    }
+
+    ul {
+        line-height: 1.6;
+    }
+    
+    li {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 450px){
+    .how_content {
+        margin-left: -18px;
+        width: 100%;
+        font-size: 17px;
+    }
+
+    ul {
+        line-height: 1.6;
+    }
+    
+    li {
+        margin-bottom: 5px;
+    }
+}

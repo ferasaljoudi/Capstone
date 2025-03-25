@@ -75,15 +75,15 @@ function Solution() {
                     </p>
                 </div>
                 <div className="video_container">
-                    <iframe
-                        width="560"
-                        height="315"
+                    <div className="responsive_iframe">
+                        <iframe
                         src="https://www.youtube.com/embed/bguCP2fWp50"
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                    ></iframe>
+                        ></iframe>
+                    </div>
                 </div>
             </div>
         </section>

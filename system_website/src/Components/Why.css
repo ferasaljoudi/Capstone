@@ -57,3 +57,22 @@ a:hover {
     color: pink;
     text-decoration: underline;
 }
+
+@media (max-width: 350px){
+    .why_content {
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: left;
+        width: 95%;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 450px){
+    .why_content {
+        width: 95%;
+        font-size: 17px;
+    }
+}
