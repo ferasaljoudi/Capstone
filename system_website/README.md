@@ -1,3 +1,9 @@
 # IFS DriverAlert Website
 
-Note that this is not part of your requirement as it is not needed for our system to achive the project goal. When we thought of the project final day and how every group will have a table to show people what they have. We were not sure if we should have slides or a webpage to show and explain our project. So, if we were able to finish all requiremnts and other documentations and had extra time, we will continue the webpage. Otherwise, we will not do it.
+This webpage is meant to help people find out the details about our project. It contain all the important details along with the link to Github and the kink to download the user manual pdf.
+
+<div align="center">
+
+[![IFS-DriverAlert](https://img.shields.io/badge/Visit-IFSDriverAlert-blue)](https://ifsdriveralert.aljoudi.ca)
+
+</div>
