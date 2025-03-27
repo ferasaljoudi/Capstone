@@ -47,11 +47,19 @@
     max-width: 300px;
 }
 
+/* .mobile-download {
+    display: none;
+}
+
+.desktop-download {
+    display: inline-block;
+} */
+
 @media (max-width: 350px){
     .download-btn {
         font-size: 18px;
-        padding: 12px 18px;
-        margin-top: 10px;
+        padding: 10px 16px;
+        margin-top: 8px;
     }
 
     .what_content {
@@ -67,7 +75,7 @@
 
 @media (max-width: 450px){
     .download-btn {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .what_content {
@@ -75,3 +83,13 @@
         font-size: 17px;
     }
 }
+
+/* @media (max-width: 750px) {
+    .mobile-download {
+        display: inline-block;
+    }
+
+    .desktop-download {
+        display: none;
+    }
+} */

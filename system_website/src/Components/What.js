@@ -76,7 +76,9 @@ function What() {
 
     return (
         <section className="what" ref={whatRef}>
-            <button className="download-btn" onClick={handleDownload}> ⤓ Download User Manual</button>
+            {/* <button className="download-btn desktop-download" onClick={handleDownload}>⤓ Download User Manual</button>
+            <button className="download-btn mobile-download" onClick={() => window.open("/IFS_UserManual.pdf", "_blank")}>⤓ Download User Manual</button> */}
+            <button className="download-btn" onClick={() => window.open("/IFS_UserManual.pdf", "_blank")}>⤓ Download User Manual</button>
             <h1 className="what_header" style={{ fontSize: `${fontSize}px` }}>What is IFS-DriverAlert</h1>
             <div className={`what_content ${showParagraph ? "visible" : ""}`}>
                 <p>

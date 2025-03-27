@@ -23,7 +23,9 @@ function Footer() {
             <div className="footer-right">
                 <p className="footer-title">Resources</p>
                 <a href="https://github.com/ferasaljoudi/Capstone" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="#download" onClick={handleDownload}>⤓ Download Manual</a>
+                {/* <a href="/IFS_UserManual.pdf" target="_blank" rel="noopener noreferrer" className="mobile-download">⤓ Download Manual</a>
+                <a href="#download" onClick={handleDownload} className="desktop-download">⤓ Download Manual</a> */}
+                <a href="/IFS_UserManual.pdf" target="_blank" rel="noopener noreferrer">⤓ Download Manual</a>
             </div>
         </div>
         <div className="footer-bottom">

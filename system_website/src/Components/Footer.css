@@ -50,9 +50,28 @@
     padding-top: 10px;
 }
 
-@media (max-width: 650px) {
+/* .mobile-download {
+    display: none;
+}
+
+.desktop-download {
+    display: inline;
+} */
+
+@media (max-width: 750px) {
     .footer-top {
-        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
         margin-bottom: 25px;
     }
+
+    /* .mobile-download {
+        display: inline;
+    }
+
+    .desktop-download {
+        display: none;
+    } */
 }
