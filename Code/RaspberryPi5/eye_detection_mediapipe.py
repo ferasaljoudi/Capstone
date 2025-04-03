@@ -104,7 +104,7 @@ def alert_func(start_time, detected, alert, file1, file2, alert_count, alert_cou
             # Reset alert count if more than 5 minutes passed
             alert_count = 0
             alert_count_time = current_time
-            os.system(f"mpg321 -g 40 {file1}")
+            os.system(f"mpg321 -g 50 {file1}")
         # Increment alert count
         alert_count += 1
         # Reset variables
