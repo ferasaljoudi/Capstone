@@ -4,6 +4,7 @@ import time
 import cv2
 import mediapipe as mp
 import numpy as np
+import sounddevice as sd
 
 # Initialize MediaPipe Face Mesh
 mp_face_mesh = mp.solutions.face_mesh
@@ -91,16 +92,13 @@ def alert_func(start_time, detected, alert, file1, file2, alert_count, alert_cou
     current_time = time.time()
     if detected and alert:
         if alert_count == 0:
-	    # Start timing
+# Start timing
             alert_count_time = current_time
             os.system(f"mpg321 -g 50 {file1}")
         elif alert_count == 1 and (current_time - alert_count_time) <= 300:
-	    # Reset timing
-            alert_count_time = current_time
             os.system(f"mpg321 -g 75 {file1}")
         elif (current_time - alert_count_time) <= 300:
-	    # Reset timing
-            alert_count_time = current_time
+            play_beep()
             os.system(f"mpg321 {file2}")
         else:
             # Reset alert count if more than 5 minutes passed
@@ -116,6 +114,13 @@ def alert_func(start_time, detected, alert, file1, file2, alert_count, alert_cou
 
     # Return the updated variables
     return start_time, detected, alert, alert_count, alert_count_time
+
+# Play a custom sine wave beep sound
+def play_beep(freq=1000, duration=1.5, volume=0.8, fs=4000):
+    t = np.linspace(0, duration, int(fs * duration), False)
+    tone = np.sin(freq * 2 * np.pi * t) * volume
+    sd.play(tone, samplerate=fs)
+    sd.wait()
 
 # Main logic
 def main():
