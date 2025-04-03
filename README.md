@@ -8,8 +8,8 @@
 </div>
 <br>
 
-- We are developing a driver detection system that alerts when it detects eye closure to prevent drowsiness-related accidents.
-- The system uses a camera and a machine learning model running on a Raspberry Pi 5 to monitor the driver’s eye activity in real-time.
+- We are developing a driver detection system that alerts when it detects drowsiness signs to prevent drowsiness-related accidents.
+- The system uses a camera and a real-time face and eye tracking algorithm (MediaPipe) running on a Raspberry Pi 5 to monitor the driver’s face activity.
 - The main goal behind our project is to enhance road safety by offering an affordable, offline solution that reduces accidents caused by drowsy driving.
 - Unlike detection systems in expensive high-end cars, our solution is `affordable`, `standalone`, works `offline`, and can be installed in any vehicle, making it more accessible to a broader audience.
 
@@ -23,7 +23,7 @@
   <summary><b>Implementation Details</b></summary>
   <br>
 
-  Our solution involves using a camera with Raspberry Pi 5 to monitor the driver’s eyes in real-time. We will implement a machine learning model, likely a Convolutional Neural Network (CNN), for accurate eye closure detection, leveraging OpenCV for image processing. The system will sound a buzzer when drowsiness is detected.
+  Our solution uses a camera connected to a Raspberry Pi 5 to monitor the driver’s facial features in real-time. We utilize MediaPipe to detect three key signs of drowsiness: closed eyes, yawning, and looking away, by analyzing facial landmarks. OpenCV is used for image processing and frame handling. A GPS module is integrated to enable Auto mode, where detection activates automatically when the vehicle speed reaches 20 km/h or higher. When signs of drowsiness are detected, the system plays a progressive audio alert through a speaker to immediately warn the driver.
 
 </details>
 <br>
