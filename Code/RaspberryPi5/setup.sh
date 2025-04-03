@@ -91,3 +91,10 @@ head -n 20 /dev/ttyACM0 | grep GPGGA
 
 # Test getting the speed
 head -n 20 /dev/ttyACM0 | grep GPVTG
+
+# Additional set up for adding a beep sound
+# New terminal
+sudo apt install numpy sounddevice
+source capstone/bin/activate
+cd capstone/eye_detection/
+pip install sounddevice
