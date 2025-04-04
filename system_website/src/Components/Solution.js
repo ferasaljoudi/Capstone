@@ -73,11 +73,14 @@ function Solution() {
                     <p>
                         IFS-DriverAlert provides an affordable, standalone, and offline drowsiness detection system that can be added to any standard vehicle. It uses AI-powered facial monitoring to detect signs of fatigue and responds with progressive audio alerts to help keep drivers safe. This system ensures privacy by processing data locally without storing any images or video.
                     </p>
+                    <p>
+                        The below video shows the system components and operation.
+                    </p>
                 </div>
                 <div className="video_container">
                     <div className="responsive_iframe">
                         <iframe
-                        src="https://www.youtube.com/embed/bguCP2fWp50"
+                        src="https://www.youtube.com/watch?v=o84s45abvUQ"
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
