@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./Solution.css";
 
 function Solution() {
@@ -80,7 +80,7 @@ function Solution() {
                 <div className="video_container">
                     <div className="responsive_iframe">
                         <iframe
-                        src="https://www.youtube.com/watch?v=o84s45abvUQ"
+                        src="https://www.youtube.com/embed/o84s45abvUQ"
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
