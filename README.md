@@ -146,22 +146,3 @@
 </table>
 </div>
 
-<br>
-<div style="width: 100%;">
-    <a href="#"><img src="https://raw.githubusercontent.com/ferasaljoudi/AssetsRepository/main/BrownSVGs/contributions.svg" alt="Contributions" style="width: 100%"></a>
-</div>
-<br>
-
-<div align="center">
-
-[<img src="https://github.com/ferasaljoudi.png" width="80px;" /><br /><sub><a href="https://github.com/ferasaljoudi">Feras Aljoudi</a></sub>](https://github.com/ferasaljoudi)
-
-<br>
-
-[<img src="https://github.com/park250ss.png" width="80px;" /><br /><sub><a href="https://github.com/park250ss">Seonyu Park</a></sub>](https://github.com/park250ss)
-
-<br>
-
-[<img src="https://github.com/Ehabmohamad.png" width="80px;" /><br /><sub><a href="https://github.com/Ehabmohamad">Ehab Mohamad</a></sub>](https://github.com/Ehabmohamad)
-
-</div>
