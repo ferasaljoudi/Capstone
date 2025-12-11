@@ -8,4 +8,4 @@ services:
     image: ferasaljoudi/ifsdriveralert:latest
     platform: linux/arm64
     ports:
-      - "3000:3000"
+      - "94:80"
